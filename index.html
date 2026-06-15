@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fafbff" media="(prefers-color-scheme: light)">
     <title>Abi Eka Putra Wulyono — Informatics Graduate & Developer</title>
     <meta name="description" content="Personal website of Abi Eka Putra Wulyono — Informatics graduate, Machine Learning enthusiast, and Full-Stack Developer based in East Java, Indonesia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,20 +13,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="cursor-spotlight" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+    <div class="konami-overlay" aria-hidden="true">
+        <div class="konami-card">
+            <div class="konami-emoji">☕</div>
+            <h3>You found a secret!</h3>
+            <p>Thanks for trying the Konami code. Coffee on me whenever you're in Mojokerto.</p>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">AEP<span class="dot">.</span></a>
             <ul class="nav-menu">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+                <li><a href="#playground" data-i18n="nav.playground">Playground</a></li>
+                <li><a href="#education" data-i18n="nav.education">Education</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
-            <button class="nav-toggle" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="nav-controls">
+                <button class="ctrl-btn lang-toggle" aria-label="Toggle language">
+                    <span class="lang-current">EN</span>
+                </button>
+                <button class="ctrl-btn theme-toggle" aria-label="Toggle theme">
+                    <svg class="icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                </button>
+                <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -32,22 +56,30 @@
         <div class="container">
             <div class="hero-layout">
                 <div class="hero-content">
-                    <p class="hero-greeting">Hi, my name is</p>
+                    <p class="hero-greeting" data-i18n="hero.greeting">Hi, my name is</p>
                     <h1 class="hero-name">Abi Eka Putra Wulyono.</h1>
-                    <h2 class="hero-tagline">I build things for the web and beyond.</h2>
-                    <p class="hero-description">
-                        I'm a <span class="highlight">Fresh Graduate Software Engineer</span> based in East Java, Indonesia,
-                        focused on <span class="highlight">machine learning</span>, <span class="highlight">data science</span>,
-                        and <span class="highlight">full-stack web development</span>.
+                    <h2 class="hero-tagline">
+                        <span data-i18n="hero.tagline.start">I build things for</span>
+                        <span class="type-target" data-rotate='["the web.","ML models.","data pipelines.","experiences."]'>the web.</span><span class="type-cursor" aria-hidden="true"></span>
+                    </h2>
+                    <p class="hero-description" data-i18n="hero.description">
+                        I'm a Fresh Graduate Software Engineer based in East Java, Indonesia,
+                        focused on machine learning, data science, and full-stack web development.
                         Currently working as a Technical Support Engineer at PT Adi Media Expertindo
                         and open to opportunities where I can grow, learn, and create meaningful impact.
                     </p>
+                    <div class="working-on">
+                        <span class="working-dot"></span>
+                        <span data-i18n="hero.working_on">Open to opportunities</span>
+                        <span class="working-sep">·</span>
+                        <span class="working-value" data-i18n="hero.working_on.value">OCR systems @ Adi Media</span>
+                    </div>
                     <div class="hero-cta">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="Abi-Eka-Putra-Wulyono-resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+                        <a href="#projects" class="btn btn-primary magnetic" data-i18n="hero.cta.work">View My Work</a>
+                        <a href="Abi-Eka-Putra-Wulyono-resume.pdf" class="btn btn-secondary magnetic" download data-i18n="hero.cta.resume">Download Resume</a>
                     </div>
                 </div>
-                <div class="hero-avatar">
+                <div class="hero-avatar" data-tilt data-tilt-strength="6">
                     <div class="avatar-frame">
                         <img
                             src="https://avatars.githubusercontent.com/u/130729040?v=4&s=640"
@@ -89,50 +121,50 @@
 
     <section id="about" class="section about">
         <div class="container">
-            <h2 class="section-title"><span class="section-num">01.</span> About Me</h2>
+            <h2 class="section-title"><span class="section-num">01.</span> <span data-i18n="about.title">About Me</span></h2>
             <div class="about-grid">
                 <div class="about-text">
-                    <p>
-                        Hello! I'm Abi, a <strong>Fresh Graduate Software Engineer</strong> from Universitas
+                    <p data-i18n="about.p1">
+                        Hello! I'm Abi, a Fresh Graduate Software Engineer from Universitas
                         Pembangunan Nasional Veteran Jawa Timur (UPN Veteran East Java), where I earned my
-                        Bachelor's in Informatics with a GPA of <strong>3.90/4.00</strong>. My journey into
+                        Bachelor's in Informatics with a GPA of 3.90/4.00. My journey into
                         technology started with curiosity and has grown into a deep passion for solving
                         real-world problems through code.
                     </p>
-                    <p>
+                    <p data-i18n="about.p2">
                         I was selected as a Machine Learning Cohort at
-                        <strong>Bangkit Academy 2024</strong>, a program led by Google, GoTo, and Traveloka,
+                        Bangkit Academy 2024, a program led by Google, GoTo, and Traveloka,
                         where I built AWAIR — an AI-powered Android app that predicts Air Quality Index using
                         TensorFlow and Google Cloud Platform.
                     </p>
-                    <p>
+                    <p data-i18n="about.p3">
                         Beyond academic work, I run a small independent coffee shop in Mojokerto, which has
                         taught me the value of consistency, customer focus, and entrepreneurial thinking.
                         These days, I'm focused on:
                     </p>
                     <ul class="about-list">
-                        <li>Growing as a Technical Support Engineer at PT Adi Media Expertindo</li>
-                        <li>Improving OCR systems for industrial code recognition and validation</li>
-                        <li>Exploring opportunities in ML, data science, and full-stack development</li>
-                        <li>Sharing knowledge through community service and mentorship</li>
+                        <li data-i18n="about.li1">Growing as a Technical Support Engineer at PT Adi Media Expertindo</li>
+                        <li data-i18n="about.li2">Improving OCR systems for industrial code recognition and validation</li>
+                        <li data-i18n="about.li3">Exploring opportunities in ML, data science, and full-stack development</li>
+                        <li data-i18n="about.li4">Sharing knowledge through community service and mentorship</li>
                     </ul>
                 </div>
                 <div class="about-stats">
                     <div class="stat-card">
-                        <span class="stat-num">3.90</span>
-                        <span class="stat-label">Final GPA</span>
+                        <span class="stat-num" data-count-to="3.90" data-decimals="2">0</span>
+                        <span class="stat-label" data-i18n="about.stat.gpa">Final GPA</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-num">7+</span>
-                        <span class="stat-label">Certificates</span>
+                        <span class="stat-num" data-count-to="7" data-suffix="+">0</span>
+                        <span class="stat-label" data-i18n="about.stat.certs">Certificates</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-num">28</span>
-                        <span class="stat-label">Members Led</span>
+                        <span class="stat-num" data-count-to="28">0</span>
+                        <span class="stat-label" data-i18n="about.stat.members">Members Led</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-num">4+</span>
-                        <span class="stat-label">Years Coding</span>
+                        <span class="stat-num" data-count-to="4" data-suffix="+">0</span>
+                        <span class="stat-label" data-i18n="about.stat.years">Years Coding</span>
                     </div>
                 </div>
             </div>
@@ -141,7 +173,7 @@
 
     <section id="experience" class="section experience">
         <div class="container">
-            <h2 class="section-title"><span class="section-num">02.</span> Where I've Worked</h2>
+            <h2 class="section-title"><span class="section-num">02.</span> <span data-i18n="experience.title">Where I've Worked</span></h2>
             <div class="experience-container">
                 <div class="tabs" role="tablist">
                     <button class="tab active" data-tab="0" role="tab">Adi Media</button>
@@ -166,9 +198,9 @@
                         <h3>Undergraduate Researcher <span class="company">@ Thesis Project</span></h3>
                         <p class="duration">September 2025 — March 2026 · Surabaya</p>
                         <ul>
-                            <li>Developing a hybrid deep learning model combining EfficientNet-B0 and Prototypical Networks for diabetic retinopathy severity classification</li>
-                            <li>Implementing image preprocessing, model training, and evaluation pipelines using medical retinal image datasets</li>
-                            <li>Improving classification performance by leveraging transfer learning and metric learning techniques</li>
+                            <li>Developed a hybrid deep learning model combining EfficientNet-B0 and Prototypical Networks for diabetic retinopathy severity classification</li>
+                            <li>Implemented image preprocessing, model training, and evaluation pipelines using medical retinal image datasets</li>
+                            <li>Improved classification performance by leveraging transfer learning and metric learning techniques</li>
                         </ul>
                     </div>
                     <div class="tab-content" data-content="2">
@@ -214,9 +246,15 @@
 
     <section id="projects" class="section projects">
         <div class="container">
-            <h2 class="section-title"><span class="section-num">03.</span> Things I've Built</h2>
+            <h2 class="section-title"><span class="section-num">03.</span> <span data-i18n="projects.title">Things I've Built</span></h2>
+            <div class="project-filters" role="tablist">
+                <button class="filter-pill active" data-filter="all" data-i18n="projects.filter.all">All</button>
+                <button class="filter-pill" data-filter="ml" data-i18n="projects.filter.ml">Machine Learning</button>
+                <button class="filter-pill" data-filter="web" data-i18n="projects.filter.web">Web Dev</button>
+                <button class="filter-pill" data-filter="design" data-i18n="projects.filter.design">Design</button>
+            </div>
             <div class="projects-grid">
-                <article class="project-card">
+                <article class="project-card" data-tilt data-tilt-strength="4" data-category="ml">
                     <div class="project-header">
                         <div class="project-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h20v14H2z"/><path d="M8 21h8M12 17v4"/></svg>
@@ -241,7 +279,7 @@
                     </ul>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-tilt data-tilt-strength="4" data-category="web">
                     <div class="project-header">
                         <div class="project-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
@@ -267,7 +305,7 @@
                     </ul>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-tilt data-tilt-strength="4" data-category="ml">
                     <div class="project-header">
                         <div class="project-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
@@ -293,7 +331,7 @@
                     </ul>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-tilt data-tilt-strength="4" data-category="web">
                     <div class="project-header">
                         <div class="project-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
@@ -317,7 +355,7 @@
                     </ul>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-tilt data-tilt-strength="4" data-category="design">
                     <div class="project-header">
                         <div class="project-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -342,7 +380,7 @@
                     </ul>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-tilt data-tilt-strength="4" data-category="web">
                     <div class="project-header">
                         <div class="project-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
@@ -370,17 +408,84 @@
         </div>
     </section>
 
+    <section id="playground" class="section playground">
+        <div class="container">
+            <h2 class="section-title"><span class="section-num">04.</span> <span data-i18n="playground.title">Try My ML Model</span></h2>
+            <p class="playground-desc" data-i18n="playground.desc">
+                A live image classifier running entirely in your browser using TensorFlow.js
+                and MobileNet — the same kind of model architecture I worked with during
+                Bangkit Academy. Upload any photo and the model will guess what it sees.
+            </p>
+
+            <div class="ml-demo">
+                <div class="ml-bar">
+                    <button id="load-model" class="btn btn-primary magnetic">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                        <span data-i18n="playground.load">Load Model (~16 MB)</span>
+                    </button>
+                    <div class="model-status" id="model-status">
+                        <span class="status-dot"></span>
+                        <span class="status-text" data-i18n="playground.not_loaded">Model not loaded</span>
+                    </div>
+                </div>
+
+                <div class="ml-workspace" id="ml-workspace" hidden>
+                    <label class="upload-area" for="image-input" id="upload-area">
+                        <input type="file" id="image-input" accept="image/*" hidden>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                        <p class="upload-title" data-i18n="playground.upload">Drop an image here or click to upload</p>
+                        <p class="upload-hint" data-i18n="playground.upload.hint">PNG, JPG, WEBP — anything goes</p>
+                    </label>
+
+                    <div class="ml-examples">
+                        <p class="examples-label" data-i18n="playground.examples">Or try one of these:</p>
+                        <div class="example-grid">
+                            <button class="example-btn" data-example-url="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=512&q=80&auto=format&fit=crop" data-example-label="Cat">
+                                <span class="example-emoji">🐱</span>
+                                <span>Cat</span>
+                            </button>
+                            <button class="example-btn" data-example-url="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=512&q=80&auto=format&fit=crop" data-example-label="Dog">
+                                <span class="example-emoji">🐶</span>
+                                <span>Dog</span>
+                            </button>
+                            <button class="example-btn" data-example-url="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=512&q=80&auto=format&fit=crop" data-example-label="Car">
+                                <span class="example-emoji">🚗</span>
+                                <span>Car</span>
+                            </button>
+                            <button class="example-btn" data-example-url="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=512&q=80&auto=format&fit=crop" data-example-label="Coffee">
+                                <span class="example-emoji">☕</span>
+                                <span>Coffee</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ml-result" id="ml-result" hidden>
+                        <div class="result-image">
+                            <img id="result-preview" alt="Image being classified" crossorigin="anonymous">
+                        </div>
+                        <div class="predictions">
+                            <h4 data-i18n="playground.predictions">Top predictions</h4>
+                            <ol class="prediction-list" id="prediction-list"></ol>
+                            <p class="prediction-meta" id="prediction-meta"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="education" class="section education">
         <div class="container">
-            <h2 class="section-title"><span class="section-num">04.</span> Education & Leadership</h2>
+            <h2 class="section-title"><span class="section-num">05.</span> <span data-i18n="education.title">Education & Leadership</span></h2>
             <div class="timeline">
+                <div class="timeline-progress" aria-hidden="true"></div>
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">Aug 2022 — Jun 2026</div>
                         <h3>Bachelor's Degree in Informatics</h3>
                         <p class="institution">Universitas Pembangunan Nasional Veteran Jawa Timur · GPA 3.90/4.00</p>
-                        <p>Focused on machine learning, software engineering, and full-stack development. Active in student organizations and community service initiatives.</p>
+                        <p data-i18n="edu.uni.desc">Focused on machine learning, software engineering, and full-stack development. Active in student organizations and community service initiatives.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -388,8 +493,8 @@
                     <div class="timeline-content">
                         <div class="timeline-date">July 2025</div>
                         <h3>Head of Public Relations · KKN SDGs Ketintang</h3>
-                        <p class="institution">Thematic Community Service Program</p>
-                        <p>Managed communication and PR for the program, created publication materials, and built strong relationships with residents and local stakeholders.</p>
+                        <p class="institution" data-i18n="edu.kkn.inst">Thematic Community Service Program</p>
+                        <p data-i18n="edu.kkn.desc">Managed communication and PR for the program, created publication materials, and built strong relationships with residents and local stakeholders.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -398,7 +503,7 @@
                         <div class="timeline-date">Apr 2024 — Feb 2025</div>
                         <h3>Head of Community Service · HIMATIFA</h3>
                         <p class="institution">Informatics Student Association, UPN Veteran East Java</p>
-                        <p>Oversaw all initiatives within the department, led community empowerment programs, and managed team development, fundraising, and resource allocation.</p>
+                        <p data-i18n="edu.himatifa.desc">Oversaw all initiatives within the department, led community empowerment programs, and managed team development, fundraising, and resource allocation.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -407,16 +512,16 @@
                         <div class="timeline-date">October 2023</div>
                         <h3>Project Leader · Abdi Desa Informatika 2023</h3>
                         <p class="institution">HIMATIFA, Duyung Village — Trawas, Mojokerto</p>
-                        <p>Led a team of 28 in implementing community education programs on the importance of technology in the modern era. Conducted seminars and hands-on training to boost digital literacy.</p>
+                        <p data-i18n="edu.abdi.desc">Led a team of 28 in implementing community education programs on the importance of technology in the modern era. Conducted seminars and hands-on training to boost digital literacy.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">Jul 2019 — May 2022</div>
-                        <h3>Senior High School (Science)</h3>
+                        <h3 data-i18n="edu.sma.title">Senior High School (Science)</h3>
                         <p class="institution">SMA Negeri 1 Dawarblandong · GPA 88.41/100</p>
-                        <p>Served as Student Council Member for two terms, coordinated school events including national celebrations and inter-class competitions.</p>
+                        <p data-i18n="edu.sma.desc">Served as Student Council Member for two terms, coordinated school events including national celebrations and inter-class competitions.</p>
                     </div>
                 </div>
             </div>
@@ -425,10 +530,10 @@
 
     <section id="skills" class="section skills">
         <div class="container">
-            <h2 class="section-title"><span class="section-num">05.</span> Skills & Certificates</h2>
+            <h2 class="section-title"><span class="section-num">06.</span> <span data-i18n="skills.title">Skills & Certificates</span></h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Programming</h3>
+                    <h3 data-i18n="skills.cat.programming">Programming</h3>
                     <ul>
                         <li>Python</li>
                         <li>Java</li>
@@ -439,7 +544,7 @@
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Frameworks & Tools</h3>
+                    <h3 data-i18n="skills.cat.frameworks">Frameworks & Tools</h3>
                     <ul>
                         <li>Laravel</li>
                         <li>Tailwind CSS</li>
@@ -450,7 +555,7 @@
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Machine Learning</h3>
+                    <h3 data-i18n="skills.cat.ml">Machine Learning</h3>
                     <ul>
                         <li>TensorFlow</li>
                         <li>Scikit-Learn</li>
@@ -461,19 +566,19 @@
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Soft Skills</h3>
+                    <h3 data-i18n="skills.cat.soft">Soft Skills</h3>
                     <ul>
-                        <li>Problem-solving</li>
-                        <li>Critical thinking</li>
-                        <li>Teamwork</li>
-                        <li>Leadership</li>
-                        <li>Project management</li>
-                        <li>Communication</li>
+                        <li data-i18n="skills.soft.1">Problem-solving</li>
+                        <li data-i18n="skills.soft.2">Critical thinking</li>
+                        <li data-i18n="skills.soft.3">Teamwork</li>
+                        <li data-i18n="skills.soft.4">Leadership</li>
+                        <li data-i18n="skills.soft.5">Project management</li>
+                        <li data-i18n="skills.soft.6">Communication</li>
                     </ul>
                 </div>
             </div>
             <div class="certificates">
-                <h3>Certifications</h3>
+                <h3 data-i18n="skills.certifications">Certifications</h3>
                 <div class="certificates-list">
                     <span class="cert-tag">Machine Learning Specialization</span>
                     <span class="cert-tag">Deep Learning Specialization</span>
@@ -489,15 +594,15 @@
 
     <section id="contact" class="section contact">
         <div class="container">
-            <p class="contact-pretitle"><span class="section-num">06.</span> What's Next?</p>
-            <h2 class="contact-title">Get In Touch</h2>
-            <p class="contact-description">
-                I'm currently working at PT Adi Media Expertindo and finishing my undergraduate thesis,
+            <p class="contact-pretitle"><span class="section-num">07.</span> <span data-i18n="contact.pretitle">What's Next?</span></p>
+            <h2 class="contact-title" data-i18n="contact.title">Get In Touch</h2>
+            <p class="contact-description" data-i18n="contact.description">
+                I'm currently working at PT Adi Media Expertindo and exploring next opportunities,
                 but I'm always open to interesting conversations about machine learning, web development,
                 or just a good cup of coffee. Whether you have a question, an opportunity, or just want to
                 say hi — my inbox is open.
             </p>
-            <a href="mailto:abiekapw@gmail.com" class="btn btn-primary btn-large">Say Hello</a>
+            <a href="mailto:abiekapw@gmail.com" class="btn btn-primary btn-large magnetic" data-i18n="contact.cta">Say Hello</a>
         </div>
     </section>
 
@@ -508,7 +613,7 @@
                 <a href="https://github.com/abiekaputra" target="_blank" rel="noopener">GitHub</a>
                 <a href="mailto:abiekapw@gmail.com">Email</a>
             </div>
-            <p class="footer-credit">
+            <p class="footer-credit" data-i18n="footer.credit">
                 Designed & built by Abi Eka Putra Wulyono · Mojokerto, East Java
             </p>
         </div>
