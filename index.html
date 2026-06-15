@@ -410,63 +410,208 @@
 
     <section id="playground" class="section playground">
         <div class="container">
-            <h2 class="section-title"><span class="section-num">04.</span> <span data-i18n="playground.title">Try My ML Model</span></h2>
+            <h2 class="section-title"><span class="section-num">04.</span> <span data-i18n="playground.title">Try My ML Models</span></h2>
             <p class="playground-desc" data-i18n="playground.desc">
-                A live image classifier running entirely in your browser using TensorFlow.js
-                and MobileNet — the same kind of model architecture I worked with during
-                Bangkit Academy. Upload any photo and the model will guess what it sees.
+                Four live ML demos running entirely in your browser using TensorFlow.js — no backend,
+                no data leaves your device. The same kind of model architectures I worked with during
+                Bangkit Academy. Pick a demo, load the model, and try it out.
             </p>
 
-            <div class="ml-demo">
-                <div class="ml-bar">
-                    <button id="load-model" class="btn btn-primary magnetic">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-                        <span data-i18n="playground.load">Load Model (~16 MB)</span>
-                    </button>
-                    <div class="model-status" id="model-status">
-                        <span class="status-dot"></span>
-                        <span class="status-text" data-i18n="playground.not_loaded">Model not loaded</span>
+            <div class="ml-tabs" role="tablist">
+                <button class="ml-tab active" data-ml-tab="classifier" role="tab">
+                    <span class="ml-tab-icon">🖼️</span>
+                    <span class="ml-tab-label" data-i18n="ml.tab.classifier">Image Classifier</span>
+                </button>
+                <button class="ml-tab" data-ml-tab="detector" role="tab">
+                    <span class="ml-tab-icon">🎯</span>
+                    <span class="ml-tab-label" data-i18n="ml.tab.detector">Object Detection</span>
+                </button>
+                <button class="ml-tab" data-ml-tab="toxicity" role="tab">
+                    <span class="ml-tab-icon">💬</span>
+                    <span class="ml-tab-label" data-i18n="ml.tab.toxicity">Text Toxicity</span>
+                </button>
+                <button class="ml-tab" data-ml-tab="webcam" role="tab">
+                    <span class="ml-tab-icon">📷</span>
+                    <span class="ml-tab-label" data-i18n="ml.tab.webcam">Live Webcam</span>
+                </button>
+            </div>
+
+            <!-- ========== PANEL 1: Image Classifier ========== -->
+            <div class="ml-panel active" data-ml-panel="classifier">
+                <div class="ml-panel-head">
+                    <div class="ml-panel-meta">
+                        <h3 data-i18n="ml.classifier.title">Image Classifier · MobileNet v2</h3>
+                        <p data-i18n="ml.classifier.desc">Upload a photo and get the top 5 guesses across 1,000 ImageNet classes.</p>
+                    </div>
+                    <div class="ml-panel-controls">
+                        <button class="btn btn-primary magnetic ml-load-btn" data-load="classifier">
+                            <span data-i18n="ml.load_16">Load Model (~16 MB)</span>
+                        </button>
+                        <div class="model-status" data-status="classifier">
+                            <span class="status-dot"></span>
+                            <span class="status-text" data-i18n="ml.not_loaded">Model not loaded</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="ml-workspace" id="ml-workspace" hidden>
-                    <label class="upload-area" for="image-input" id="upload-area">
-                        <input type="file" id="image-input" accept="image/*" hidden>
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-                        <p class="upload-title" data-i18n="playground.upload">Drop an image here or click to upload</p>
-                        <p class="upload-hint" data-i18n="playground.upload.hint">PNG, JPG, WEBP — anything goes</p>
+                <div class="ml-workspace" data-workspace="classifier" hidden>
+                    <label class="upload-area" data-upload="classifier">
+                        <input type="file" accept="image/*" hidden>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                        <p class="upload-title" data-i18n="ml.upload.classify">Drop an image here or click to upload</p>
+                        <p class="upload-hint" data-i18n="ml.upload.hint">PNG, JPG, WEBP — anything goes</p>
                     </label>
-
                     <div class="ml-examples">
-                        <p class="examples-label" data-i18n="playground.examples">Or try one of these:</p>
+                        <p class="examples-label" data-i18n="ml.examples">Or try one of these:</p>
                         <div class="example-grid">
-                            <button class="example-btn" data-example-url="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=512&q=80&auto=format&fit=crop" data-example-label="Cat">
-                                <span class="example-emoji">🐱</span>
-                                <span>Cat</span>
+                            <button class="example-btn" data-example-src="assets/examples/cat.jpg" data-panel="classifier">
+                                <span class="example-emoji">🐱</span><span>Cat</span>
                             </button>
-                            <button class="example-btn" data-example-url="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=512&q=80&auto=format&fit=crop" data-example-label="Dog">
-                                <span class="example-emoji">🐶</span>
-                                <span>Dog</span>
+                            <button class="example-btn" data-example-src="assets/examples/dog.jpg" data-panel="classifier">
+                                <span class="example-emoji">🐶</span><span>Dog</span>
                             </button>
-                            <button class="example-btn" data-example-url="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=512&q=80&auto=format&fit=crop" data-example-label="Car">
-                                <span class="example-emoji">🚗</span>
-                                <span>Car</span>
+                            <button class="example-btn" data-example-src="assets/examples/car.jpg" data-panel="classifier">
+                                <span class="example-emoji">🚗</span><span>Car</span>
                             </button>
-                            <button class="example-btn" data-example-url="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=512&q=80&auto=format&fit=crop" data-example-label="Coffee">
-                                <span class="example-emoji">☕</span>
-                                <span>Coffee</span>
+                            <button class="example-btn" data-example-src="assets/examples/coffee.jpg" data-panel="classifier">
+                                <span class="example-emoji">☕</span><span>Coffee</span>
                             </button>
                         </div>
                     </div>
-
-                    <div class="ml-result" id="ml-result" hidden>
+                    <div class="ml-result" data-result="classifier" hidden>
                         <div class="result-image">
-                            <img id="result-preview" alt="Image being classified" crossorigin="anonymous">
+                            <img data-preview="classifier" alt="Image being classified">
                         </div>
                         <div class="predictions">
-                            <h4 data-i18n="playground.predictions">Top predictions</h4>
-                            <ol class="prediction-list" id="prediction-list"></ol>
-                            <p class="prediction-meta" id="prediction-meta"></p>
+                            <h4 data-i18n="ml.top_preds">Top predictions</h4>
+                            <ol class="prediction-list" data-list="classifier"></ol>
+                            <p class="prediction-meta" data-meta="classifier"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PANEL 2: Object Detection ========== -->
+            <div class="ml-panel" data-ml-panel="detector" hidden>
+                <div class="ml-panel-head">
+                    <div class="ml-panel-meta">
+                        <h3 data-i18n="ml.detector.title">Object Detection · COCO-SSD</h3>
+                        <p data-i18n="ml.detector.desc">Find and draw boxes around 80 different object types — people, animals, vehicles, food, and more.</p>
+                    </div>
+                    <div class="ml-panel-controls">
+                        <button class="btn btn-primary magnetic ml-load-btn" data-load="detector">
+                            <span data-i18n="ml.load_13">Load Model (~13 MB)</span>
+                        </button>
+                        <div class="model-status" data-status="detector">
+                            <span class="status-dot"></span>
+                            <span class="status-text" data-i18n="ml.not_loaded">Model not loaded</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-workspace" data-workspace="detector" hidden>
+                    <label class="upload-area" data-upload="detector">
+                        <input type="file" accept="image/*" hidden>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                        <p class="upload-title" data-i18n="ml.upload.detect">Drop an image with objects you want to detect</p>
+                        <p class="upload-hint" data-i18n="ml.upload.hint">PNG, JPG, WEBP — anything goes</p>
+                    </label>
+                    <div class="ml-examples">
+                        <p class="examples-label" data-i18n="ml.examples">Or try one of these:</p>
+                        <div class="example-grid">
+                            <button class="example-btn" data-example-src="assets/examples/cat.jpg" data-panel="detector">
+                                <span class="example-emoji">🐱</span><span>Cat</span>
+                            </button>
+                            <button class="example-btn" data-example-src="assets/examples/dog.jpg" data-panel="detector">
+                                <span class="example-emoji">🐶</span><span>Dog</span>
+                            </button>
+                            <button class="example-btn" data-example-src="assets/examples/car.jpg" data-panel="detector">
+                                <span class="example-emoji">🚗</span><span>Car</span>
+                            </button>
+                            <button class="example-btn" data-example-src="assets/examples/coffee.jpg" data-panel="detector">
+                                <span class="example-emoji">☕</span><span>Coffee</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ml-result detector-result" data-result="detector" hidden>
+                        <div class="detector-canvas-wrap">
+                            <canvas data-canvas="detector"></canvas>
+                        </div>
+                        <div class="predictions">
+                            <h4 data-i18n="ml.objects_found">Objects detected</h4>
+                            <ol class="prediction-list" data-list="detector"></ol>
+                            <p class="prediction-meta" data-meta="detector"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PANEL 3: Text Toxicity ========== -->
+            <div class="ml-panel" data-ml-panel="toxicity" hidden>
+                <div class="ml-panel-head">
+                    <div class="ml-panel-meta">
+                        <h3 data-i18n="ml.toxicity.title">Text Toxicity · BERT-lite</h3>
+                        <p data-i18n="ml.toxicity.desc">Type any sentence and the model rates it across 7 toxicity dimensions. Useful for content moderation.</p>
+                    </div>
+                    <div class="ml-panel-controls">
+                        <button class="btn btn-primary magnetic ml-load-btn" data-load="toxicity">
+                            <span data-i18n="ml.load_28">Load Model (~28 MB)</span>
+                        </button>
+                        <div class="model-status" data-status="toxicity">
+                            <span class="status-dot"></span>
+                            <span class="status-text" data-i18n="ml.not_loaded">Model not loaded</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-workspace" data-workspace="toxicity" hidden>
+                    <div class="text-input-wrap">
+                        <textarea data-input="toxicity" rows="3" placeholder="Type a sentence to analyze..." data-i18n-placeholder="ml.toxicity.placeholder"></textarea>
+                        <div class="text-controls">
+                            <button class="btn btn-primary magnetic" data-run="toxicity" data-i18n="ml.analyze">Analyze</button>
+                            <div class="text-examples">
+                                <button class="text-example" data-text="You're an amazing person — thank you so much for the help!" data-i18n="ml.tox.ex.nice">Nice comment</button>
+                                <button class="text-example" data-text="I hate you, you're the worst person I've ever met." data-i18n="ml.tox.ex.mean">Mean comment</button>
+                                <button class="text-example" data-text="The weather is beautiful today. Let's go for a walk." data-i18n="ml.tox.ex.neutral">Neutral</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-result toxicity-result" data-result="toxicity" hidden>
+                        <h4 data-i18n="ml.tox.scores">Toxicity scores</h4>
+                        <ol class="prediction-list" data-list="toxicity"></ol>
+                        <p class="prediction-meta" data-meta="toxicity"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== PANEL 4: Live Webcam ========== -->
+            <div class="ml-panel" data-ml-panel="webcam" hidden>
+                <div class="ml-panel-head">
+                    <div class="ml-panel-meta">
+                        <h3 data-i18n="ml.webcam.title">Live Webcam · MobileNet</h3>
+                        <p data-i18n="ml.webcam.desc">Point your camera at anything — the model classifies what it sees in real-time, ~10 frames per second.</p>
+                    </div>
+                    <div class="ml-panel-controls">
+                        <button class="btn btn-primary magnetic ml-load-btn" data-load="webcam">
+                            <span data-i18n="ml.load_16">Load Model (~16 MB)</span>
+                        </button>
+                        <div class="model-status" data-status="webcam">
+                            <span class="status-dot"></span>
+                            <span class="status-text" data-i18n="ml.not_loaded">Model not loaded</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-workspace" data-workspace="webcam" hidden>
+                    <div class="webcam-controls">
+                        <button class="btn btn-primary magnetic" data-cam="start" data-i18n="ml.cam.start">Start Camera</button>
+                        <button class="btn btn-secondary" data-cam="stop" hidden data-i18n="ml.cam.stop">Stop Camera</button>
+                        <p class="webcam-hint" data-i18n="ml.cam.permission">Browser will ask for camera permission. Nothing leaves your device.</p>
+                    </div>
+                    <div class="ml-result webcam-result" data-result="webcam" hidden>
+                        <div class="webcam-video-wrap">
+                            <video data-video="webcam" autoplay muted playsinline></video>
+                        </div>
+                        <div class="predictions">
+                            <h4 data-i18n="ml.top_preds">Top predictions</h4>
+                            <ol class="prediction-list" data-list="webcam"></ol>
+                            <p class="prediction-meta" data-meta="webcam"></p>
                         </div>
                     </div>
                 </div>

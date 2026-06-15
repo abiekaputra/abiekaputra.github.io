@@ -43,18 +43,51 @@ const translations = {
         'projects.filter.ml': 'Machine Learning',
         'projects.filter.web': 'Web Dev',
         'projects.filter.design': 'Design',
-        'playground.title': 'Try My ML Model',
-        'playground.desc': 'A live image classifier running entirely in your browser using TensorFlow.js and MobileNet — the same kind of model architecture I worked with during Bangkit Academy. Upload any photo and the model will guess what it sees.',
-        'playground.load': 'Load Model (~16 MB)',
-        'playground.not_loaded': 'Model not loaded',
-        'playground.loading': 'Loading model…',
-        'playground.ready': 'Model ready — drop an image below',
-        'playground.upload': 'Drop an image here or click to upload',
-        'playground.upload.hint': 'PNG, JPG, WEBP — anything goes',
-        'playground.examples': 'Or try one of these:',
-        'playground.predictions': 'Top predictions',
-        'playground.predicting': 'Predicting…',
-        'playground.error': 'Could not load image. Try a different one.',
+        'playground.title': 'Try My ML Models',
+        'playground.desc': 'Four live ML demos running entirely in your browser using TensorFlow.js — no backend, no data leaves your device. The same kind of model architectures I worked with during Bangkit Academy. Pick a demo, load the model, and try it out.',
+        'ml.tab.classifier': 'Image Classifier',
+        'ml.tab.detector': 'Object Detection',
+        'ml.tab.toxicity': 'Text Toxicity',
+        'ml.tab.webcam': 'Live Webcam',
+        'ml.classifier.title': 'Image Classifier · MobileNet v2',
+        'ml.classifier.desc': 'Upload a photo and get the top 5 guesses across 1,000 ImageNet classes.',
+        'ml.detector.title': 'Object Detection · COCO-SSD',
+        'ml.detector.desc': 'Find and draw boxes around 80 different object types — people, animals, vehicles, food, and more.',
+        'ml.toxicity.title': 'Text Toxicity · BERT-lite',
+        'ml.toxicity.desc': 'Type any sentence and the model rates it across 7 toxicity dimensions. Useful for content moderation.',
+        'ml.webcam.title': 'Live Webcam · MobileNet',
+        'ml.webcam.desc': 'Point your camera at anything — the model classifies what it sees in real-time, ~10 frames per second.',
+        'ml.load_13': 'Load Model (~13 MB)',
+        'ml.load_16': 'Load Model (~16 MB)',
+        'ml.load_28': 'Load Model (~28 MB)',
+        'ml.not_loaded': 'Model not loaded',
+        'ml.loading': 'Loading model…',
+        'ml.ready.classifier': 'Model ready — drop an image below',
+        'ml.ready.detector': 'Model ready — drop an image below',
+        'ml.ready.toxicity': 'Model ready — type something',
+        'ml.ready.webcam': 'Model ready — start your camera',
+        'ml.upload.classify': 'Drop an image here or click to upload',
+        'ml.upload.detect': 'Drop an image with objects you want to detect',
+        'ml.upload.hint': 'PNG, JPG, WEBP — anything goes',
+        'ml.examples': 'Or try one of these:',
+        'ml.top_preds': 'Top predictions',
+        'ml.predicting': 'Predicting…',
+        'ml.analyzing': 'Analyzing…',
+        'ml.error': 'Error during prediction',
+        'ml.objects_found': 'Objects detected',
+        'ml.objects_count': 'objects detected',
+        'ml.on_device': 'on-device',
+        'ml.live': 'live',
+        'ml.analyze': 'Analyze',
+        'ml.toxicity.placeholder': 'Type a sentence to analyze...',
+        'ml.tox.ex.nice': 'Nice comment',
+        'ml.tox.ex.mean': 'Mean comment',
+        'ml.tox.ex.neutral': 'Neutral',
+        'ml.tox.scores': 'Toxicity scores',
+        'ml.cam.start': 'Start Camera',
+        'ml.cam.stop': 'Stop Camera',
+        'ml.cam.permission': 'Browser will ask for camera permission. Nothing leaves your device.',
+        'ml.cam.denied': 'Camera access denied or unavailable',
         'edu.uni.desc': 'Focused on machine learning, software engineering, and full-stack development. Active in student organizations and community service initiatives.',
         'edu.kkn.inst': 'Thematic Community Service Program',
         'edu.kkn.desc': 'Managed communication and PR for the program, created publication materials, and built strong relationships with residents and local stakeholders.',
@@ -116,17 +149,50 @@ const translations = {
         'projects.filter.web': 'Web Dev',
         'projects.filter.design': 'Desain',
         'playground.title': 'Coba Model ML Saya',
-        'playground.desc': 'Image classifier yang berjalan langsung di browser kamu menggunakan TensorFlow.js dan MobileNet — arsitektur model serupa dengan yang saya pelajari di Bangkit Academy. Upload foto apapun dan model akan menebak isinya.',
-        'playground.load': 'Muat Model (~16 MB)',
-        'playground.not_loaded': 'Model belum dimuat',
-        'playground.loading': 'Memuat model…',
-        'playground.ready': 'Model siap — letakkan gambar di bawah',
-        'playground.upload': 'Letakkan gambar di sini atau klik untuk upload',
-        'playground.upload.hint': 'PNG, JPG, WEBP — apa saja boleh',
-        'playground.examples': 'Atau coba salah satu ini:',
-        'playground.predictions': 'Prediksi teratas',
-        'playground.predicting': 'Memprediksi…',
-        'playground.error': 'Gagal memuat gambar. Coba yang lain.',
+        'playground.desc': 'Empat demo ML yang berjalan langsung di browser kamu menggunakan TensorFlow.js — tanpa backend, tanpa data yang keluar dari device kamu. Arsitektur model serupa dengan yang saya pelajari di Bangkit Academy. Pilih demo, muat modelnya, dan coba.',
+        'ml.tab.classifier': 'Image Classifier',
+        'ml.tab.detector': 'Object Detection',
+        'ml.tab.toxicity': 'Text Toxicity',
+        'ml.tab.webcam': 'Webcam Live',
+        'ml.classifier.title': 'Image Classifier · MobileNet v2',
+        'ml.classifier.desc': 'Upload foto dan dapatkan 5 prediksi teratas dari 1.000 kelas ImageNet.',
+        'ml.detector.title': 'Object Detection · COCO-SSD',
+        'ml.detector.desc': 'Deteksi & gambar kotak di sekitar 80 jenis objek — orang, hewan, kendaraan, makanan, dan lainnya.',
+        'ml.toxicity.title': 'Text Toxicity · BERT-lite',
+        'ml.toxicity.desc': 'Ketik kalimat dan model akan menilai 7 dimensi toxicity. Berguna untuk moderasi konten.',
+        'ml.webcam.title': 'Webcam Live · MobileNet',
+        'ml.webcam.desc': 'Arahkan kamera ke objek apapun — model akan classify secara real-time, ~10 frame per detik.',
+        'ml.load_13': 'Muat Model (~13 MB)',
+        'ml.load_16': 'Muat Model (~16 MB)',
+        'ml.load_28': 'Muat Model (~28 MB)',
+        'ml.not_loaded': 'Model belum dimuat',
+        'ml.loading': 'Memuat model…',
+        'ml.ready.classifier': 'Model siap — letakkan gambar di bawah',
+        'ml.ready.detector': 'Model siap — letakkan gambar di bawah',
+        'ml.ready.toxicity': 'Model siap — ketik sesuatu',
+        'ml.ready.webcam': 'Model siap — mulai kamera kamu',
+        'ml.upload.classify': 'Letakkan gambar di sini atau klik untuk upload',
+        'ml.upload.detect': 'Letakkan gambar dengan objek yang mau dideteksi',
+        'ml.upload.hint': 'PNG, JPG, WEBP — apa saja boleh',
+        'ml.examples': 'Atau coba salah satu ini:',
+        'ml.top_preds': 'Prediksi teratas',
+        'ml.predicting': 'Memprediksi…',
+        'ml.analyzing': 'Menganalisis…',
+        'ml.error': 'Error saat prediksi',
+        'ml.objects_found': 'Objek terdeteksi',
+        'ml.objects_count': 'objek terdeteksi',
+        'ml.on_device': 'di browser',
+        'ml.live': 'live',
+        'ml.analyze': 'Analisis',
+        'ml.toxicity.placeholder': 'Ketik kalimat untuk dianalisis...',
+        'ml.tox.ex.nice': 'Komentar baik',
+        'ml.tox.ex.mean': 'Komentar kasar',
+        'ml.tox.ex.neutral': 'Netral',
+        'ml.tox.scores': 'Skor toxicity',
+        'ml.cam.start': 'Mulai Kamera',
+        'ml.cam.stop': 'Hentikan Kamera',
+        'ml.cam.permission': 'Browser akan minta izin akses kamera. Tidak ada data yang keluar dari device.',
+        'ml.cam.denied': 'Akses kamera ditolak atau tidak tersedia',
         'edu.uni.desc': 'Fokus pada machine learning, software engineering, dan full-stack development. Aktif di organisasi mahasiswa dan kegiatan pengabdian masyarakat.',
         'edu.kkn.inst': 'Program Kuliah Kerja Nyata Tematik',
         'edu.kkn.desc': 'Mengelola komunikasi dan hubungan masyarakat untuk program, membuat materi publikasi, dan membangun hubungan dengan warga serta stakeholder lokal.',
@@ -167,6 +233,11 @@ function applyLanguage(lang) {
         const key = el.dataset.i18n;
         const val = translations[lang][key];
         if (val) el.textContent = val;
+    });
+    $$('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        const val = translations[lang][key];
+        if (val) el.placeholder = val;
     });
     const langBtn = $('.lang-current');
     if (langBtn) langBtn.textContent = lang === 'en' ? 'EN' : 'ID';
@@ -540,154 +611,348 @@ function spawnConfetti() {
     }
 }
 
-/* ---------- ML Demo (TF.js + MobileNet) ---------- */
-function initMLDemo() {
-    const loadBtn = $('#load-model');
-    const status = $('#model-status');
-    const statusText = status.querySelector('.status-text');
-    const workspace = $('#ml-workspace');
-    const uploadArea = $('#upload-area');
-    const fileInput = $('#image-input');
-    const preview = $('#result-preview');
-    const result = $('#ml-result');
-    const list = $('#prediction-list');
-    const meta = $('#prediction-meta');
+/* ---------- ML Playground (4 demos) ---------- */
+const loadScript = (src) => new Promise((resolve, reject) => {
+    if (Array.from(document.scripts).some(s => s.src === src)) return resolve();
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+});
 
-    let model = null;
-    let loading = false;
+const ML_CDN = {
+    tf: 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js',
+    mobilenet: 'https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js',
+    cocoSsd: 'https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js',
+    toxicity: 'https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity@1.2.2/dist/toxicity.min.js',
+};
 
-    const setStatus = (mode, key) => {
-        status.classList.remove('loading', 'ready', 'error');
-        if (mode) status.classList.add(mode);
-        const txt = translations[currentLang][key] || translations.en[key] || key;
-        statusText.textContent = txt;
-    };
+const mlState = {
+    mobilenet: null,
+    cocoSsd: null,
+    toxicity: null,
+    webcamStream: null,
+    webcamRaf: null,
+};
 
-    const loadScript = (src) => new Promise((resolve, reject) => {
-        const s = document.createElement('script');
-        s.src = src;
-        s.onload = resolve;
-        s.onerror = reject;
-        document.head.appendChild(s);
+const t = (key, fallback) => translations[currentLang]?.[key] || translations.en[key] || fallback || key;
+
+function setPanelStatus(panel, mode, key) {
+    const s = $(`[data-status="${panel}"]`);
+    if (!s) return;
+    s.classList.remove('loading', 'ready', 'error');
+    if (mode) s.classList.add(mode);
+    s.querySelector('.status-text').textContent = t(key, key);
+}
+
+function renderBars(listEl, items, options = {}) {
+    listEl.innerHTML = '';
+    items.forEach(({ name, value, levelClass }) => {
+        const li = document.createElement('li');
+        li.className = 'prediction-item' + (levelClass ? ' ' + levelClass : '');
+        const pct = (value * 100).toFixed(1);
+        li.innerHTML = `
+            <div class="prediction-head">
+                <span class="prediction-name">${name}</span>
+                <span class="prediction-pct">${pct}%</span>
+            </div>
+            <div class="prediction-bar"><div class="prediction-fill"></div></div>
+        `;
+        listEl.appendChild(li);
+        requestAnimationFrame(() => {
+            li.querySelector('.prediction-fill').style.width = pct + '%';
+        });
     });
+}
 
-    const loadModel = async () => {
-        if (model || loading) return;
-        loading = true;
-        loadBtn.disabled = true;
-        setStatus('loading', 'playground.loading');
-        try {
-            if (typeof tf === 'undefined') {
-                await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js');
-            }
-            if (typeof mobilenet === 'undefined') {
-                await loadScript('https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js');
-            }
-            model = await mobilenet.load({ version: 2, alpha: 1.0 });
-            setStatus('ready', 'playground.ready');
-            loadBtn.hidden = true;
-            workspace.hidden = false;
-        } catch (err) {
-            console.error(err);
-            setStatus('error', 'playground.error');
-            loadBtn.disabled = false;
-        } finally {
-            loading = false;
-        }
-    };
+/* ---------- Demo: Image Classifier ---------- */
+async function loadMobileNet() {
+    if (mlState.mobilenet) return mlState.mobilenet;
+    await loadScript(ML_CDN.tf);
+    await loadScript(ML_CDN.mobilenet);
+    mlState.mobilenet = await mobilenet.load({ version: 2, alpha: 1.0 });
+    return mlState.mobilenet;
+}
 
-    const predict = async (imgEl) => {
-        if (!model) return;
-        preview.src = imgEl.src;
+async function runClassifier(imgEl) {
+    const list = $('[data-list="classifier"]');
+    const meta = $('[data-meta="classifier"]');
+    const preview = $('[data-preview="classifier"]');
+    const result = $('[data-result="classifier"]');
+
+    preview.src = imgEl.src;
+    result.hidden = false;
+    meta.textContent = t('ml.predicting', 'Predicting…');
+
+    try {
+        await new Promise(res => {
+            if (imgEl.complete && imgEl.naturalWidth > 0) res();
+            else { imgEl.onload = res; imgEl.onerror = res; }
+        });
+        const t0 = performance.now();
+        const preds = await mlState.mobilenet.classify(imgEl, 5);
+        const ms = Math.round(performance.now() - t0);
+        renderBars(list, preds.map(p => ({ name: p.className.split(',')[0], value: p.probability })));
+        meta.textContent = `MobileNet v2 · ${ms} ms · ${t('ml.on_device', 'on-device')}`;
+    } catch (err) {
+        console.error(err);
+        meta.textContent = t('ml.error', 'Error during prediction');
+    }
+}
+
+/* ---------- Demo: Object Detection ---------- */
+async function loadCocoSsd() {
+    if (mlState.cocoSsd) return mlState.cocoSsd;
+    await loadScript(ML_CDN.tf);
+    await loadScript(ML_CDN.cocoSsd);
+    mlState.cocoSsd = await cocoSsd.load();
+    return mlState.cocoSsd;
+}
+
+async function runDetector(imgEl) {
+    const canvas = $('[data-canvas="detector"]');
+    const list = $('[data-list="detector"]');
+    const meta = $('[data-meta="detector"]');
+    const result = $('[data-result="detector"]');
+
+    result.hidden = false;
+    meta.textContent = t('ml.predicting', 'Predicting…');
+
+    try {
+        await new Promise(res => {
+            if (imgEl.complete && imgEl.naturalWidth > 0) res();
+            else { imgEl.onload = res; imgEl.onerror = res; }
+        });
+
+        const maxDim = 640;
+        const scale = Math.min(maxDim / imgEl.naturalWidth, maxDim / imgEl.naturalHeight, 1);
+        canvas.width = Math.round(imgEl.naturalWidth * scale);
+        canvas.height = Math.round(imgEl.naturalHeight * scale);
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height);
+
+        const t0 = performance.now();
+        const predictions = await mlState.cocoSsd.detect(imgEl);
+        const ms = Math.round(performance.now() - t0);
+
+        ctx.lineWidth = 2;
+        ctx.font = '14px JetBrains Mono, monospace';
+        const palette = ['#64ffda', '#facc15', '#f87171', '#a78bfa', '#fb923c', '#4ade80'];
+        predictions.forEach((p, i) => {
+            const color = palette[i % palette.length];
+            const [x, y, w, h] = p.bbox.map(v => v * scale);
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.strokeRect(x, y, w, h);
+            const label = `${p.class} ${(p.score * 100).toFixed(0)}%`;
+            const labelW = ctx.measureText(label).width + 10;
+            ctx.fillRect(x, Math.max(y - 22, 0), labelW, 20);
+            ctx.fillStyle = '#0a0e1a';
+            ctx.fillText(label, x + 5, Math.max(y - 7, 13));
+        });
+
+        renderBars(list, predictions.slice(0, 8).map(p => ({ name: p.class, value: p.score })));
+        meta.textContent = `COCO-SSD · ${ms} ms · ${predictions.length} ${t('ml.objects_count', 'objects detected')}`;
+    } catch (err) {
+        console.error(err);
+        meta.textContent = t('ml.error', 'Error during prediction');
+    }
+}
+
+/* ---------- Demo: Text Toxicity ---------- */
+async function loadToxicity() {
+    if (mlState.toxicity) return mlState.toxicity;
+    await loadScript(ML_CDN.tf);
+    await loadScript(ML_CDN.toxicity);
+    mlState.toxicity = await toxicity.load(0.5);
+    return mlState.toxicity;
+}
+
+async function runToxicity(text) {
+    const list = $('[data-list="toxicity"]');
+    const meta = $('[data-meta="toxicity"]');
+    const result = $('[data-result="toxicity"]');
+    if (!text.trim()) return;
+
+    result.hidden = false;
+    meta.textContent = t('ml.analyzing', 'Analyzing…');
+    try {
+        const t0 = performance.now();
+        const preds = await mlState.toxicity.classify([text]);
+        const ms = Math.round(performance.now() - t0);
+        const labelMap = {
+            'toxicity': 'Toxicity',
+            'severe_toxicity': 'Severe Toxicity',
+            'identity_attack': 'Identity Attack',
+            'insult': 'Insult',
+            'threat': 'Threat',
+            'sexual_explicit': 'Sexual Explicit',
+            'obscene': 'Obscene',
+        };
+        const items = preds.map(p => {
+            const score = p.results[0].probabilities[1];
+            const levelClass = score >= 0.7 ? 'high' : score >= 0.4 ? 'medium' : 'low';
+            return { name: labelMap[p.label] || p.label, value: score, levelClass };
+        }).sort((a, b) => b.value - a.value);
+        renderBars(list, items);
+        meta.textContent = `Toxicity BERT · ${ms} ms · ${t('ml.on_device', 'on-device')}`;
+    } catch (err) {
+        console.error(err);
+        meta.textContent = t('ml.error', 'Error during prediction');
+    }
+}
+
+/* ---------- Demo: Webcam ---------- */
+async function startWebcam() {
+    const video = $('[data-video="webcam"]');
+    const result = $('[data-result="webcam"]');
+    const startBtn = $('[data-cam="start"]');
+    const stopBtn = $('[data-cam="stop"]');
+    try {
+        mlState.webcamStream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 }, audio: false });
+        video.srcObject = mlState.webcamStream;
         result.hidden = false;
-        list.innerHTML = '';
-        meta.textContent = translations[currentLang]['playground.predicting'] || 'Predicting…';
+        startBtn.hidden = true;
+        stopBtn.hidden = false;
 
-        try {
-            await new Promise((res) => {
-                if (imgEl.complete && imgEl.naturalWidth > 0) res();
-                else {
-                    imgEl.onload = res;
-                    imgEl.onerror = res;
-                }
-            });
-            const t0 = performance.now();
-            const predictions = await model.classify(imgEl, 5);
-            const ms = Math.round(performance.now() - t0);
+        const list = $('[data-list="webcam"]');
+        const meta = $('[data-meta="webcam"]');
+        let lastFrame = 0;
+        const loop = async (now) => {
+            if (!mlState.webcamStream) return;
+            if (now - lastFrame > 100) {
+                lastFrame = now;
+                try {
+                    const t0 = performance.now();
+                    const preds = await mlState.mobilenet.classify(video, 3);
+                    const ms = Math.round(performance.now() - t0);
+                    renderBars(list, preds.map(p => ({ name: p.className.split(',')[0], value: p.probability })));
+                    meta.textContent = `MobileNet v2 · ${ms} ms/frame · ${t('ml.live', 'live')}`;
+                } catch (e) {}
+            }
+            mlState.webcamRaf = requestAnimationFrame(loop);
+        };
+        mlState.webcamRaf = requestAnimationFrame(loop);
+    } catch (err) {
+        console.error(err);
+        setPanelStatus('webcam', 'error', 'ml.cam.denied');
+    }
+}
 
-            list.innerHTML = '';
-            predictions.forEach((p, idx) => {
-                const li = document.createElement('li');
-                li.className = 'prediction-item';
-                const pct = (p.probability * 100).toFixed(1);
-                li.innerHTML = `
-                    <div class="prediction-head">
-                        <span class="prediction-name">${p.className.split(',')[0]}</span>
-                        <span class="prediction-pct">${pct}%</span>
-                    </div>
-                    <div class="prediction-bar"><div class="prediction-fill"></div></div>
-                `;
-                list.appendChild(li);
-                requestAnimationFrame(() => {
-                    li.querySelector('.prediction-fill').style.width = pct + '%';
-                });
-            });
-            meta.textContent = `MobileNet v2 · ${ms} ms · ${currentLang === 'id' ? 'di browser' : 'on-device'}`;
-        } catch (err) {
-            console.error(err);
-            meta.textContent = translations[currentLang]['playground.error'] || 'Error';
-        }
-    };
+function stopWebcam() {
+    if (mlState.webcamStream) {
+        mlState.webcamStream.getTracks().forEach(tr => tr.stop());
+        mlState.webcamStream = null;
+    }
+    if (mlState.webcamRaf) {
+        cancelAnimationFrame(mlState.webcamRaf);
+        mlState.webcamRaf = null;
+    }
+    const video = $('[data-video="webcam"]');
+    if (video) video.srcObject = null;
+    $('[data-cam="start"]').hidden = false;
+    $('[data-cam="stop"]').hidden = true;
+    $('[data-result="webcam"]').hidden = true;
+}
+
+/* ---------- Image upload helpers (shared) ---------- */
+function attachImageHandlers(panel, runner) {
+    const upload = $(`[data-upload="${panel}"]`);
+    const input = upload.querySelector('input[type="file"]');
+    upload.addEventListener('click', () => input.click());
 
     const handleFile = (file) => {
         if (!file || !file.type.startsWith('image/')) return;
         const reader = new FileReader();
         reader.onload = (e) => {
             const img = new Image();
-            img.crossOrigin = 'anonymous';
             img.src = e.target.result;
-            img.onload = () => predict(img);
+            img.onload = () => runner(img);
         };
         reader.readAsDataURL(file);
     };
 
-    const handleExampleURL = (url) => {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.src = url;
-        img.onload = () => predict(img);
-        img.onerror = () => {
-            meta.textContent = translations[currentLang]['playground.error'] || 'Error';
-        };
-    };
-
-    loadBtn.addEventListener('click', loadModel);
-
-    fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+    input.addEventListener('change', (e) => handleFile(e.target.files[0]));
 
     ['dragenter', 'dragover'].forEach(evt =>
-        uploadArea.addEventListener(evt, (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        })
+        upload.addEventListener(evt, (e) => { e.preventDefault(); upload.classList.add('dragover'); })
     );
     ['dragleave', 'drop'].forEach(evt =>
-        uploadArea.addEventListener(evt, (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-        })
+        upload.addEventListener(evt, (e) => { e.preventDefault(); upload.classList.remove('dragover'); })
     );
-    uploadArea.addEventListener('drop', (e) => {
-        const file = e.dataTransfer.files[0];
-        handleFile(file);
-    });
+    upload.addEventListener('drop', (e) => handleFile(e.dataTransfer.files[0]));
 
-    $$('.example-btn').forEach(btn => {
+    $$(`[data-panel="${panel}"]`).forEach(btn => {
         btn.addEventListener('click', () => {
-            const url = btn.dataset.exampleUrl;
-            handleExampleURL(url);
+            const img = new Image();
+            img.src = btn.dataset.exampleSrc;
+            img.onload = () => runner(img);
         });
     });
+}
+
+/* ---------- Tab switcher + init ---------- */
+function initMLPlayground() {
+    if (!$('.ml-tabs')) return;
+
+    $$('.ml-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.mlTab;
+            $$('.ml-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            $$('.ml-panel').forEach(p => {
+                p.hidden = p.dataset.mlPanel !== target;
+                p.classList.toggle('active', p.dataset.mlPanel === target);
+            });
+            if (target !== 'webcam') stopWebcam();
+        });
+    });
+
+    const wireLoadButton = (panel, loader, key) => {
+        const btn = $(`[data-load="${panel}"]`);
+        if (!btn) return;
+        btn.addEventListener('click', async () => {
+            btn.disabled = true;
+            setPanelStatus(panel, 'loading', 'ml.loading');
+            try {
+                await loader();
+                setPanelStatus(panel, 'ready', key);
+                btn.hidden = true;
+                $(`[data-workspace="${panel}"]`).hidden = false;
+            } catch (err) {
+                console.error(err);
+                setPanelStatus(panel, 'error', 'ml.error');
+                btn.disabled = false;
+            }
+        });
+    };
+
+    wireLoadButton('classifier', loadMobileNet, 'ml.ready.classifier');
+    wireLoadButton('detector', loadCocoSsd, 'ml.ready.detector');
+    wireLoadButton('toxicity', loadToxicity, 'ml.ready.toxicity');
+    wireLoadButton('webcam', loadMobileNet, 'ml.ready.webcam');
+
+    attachImageHandlers('classifier', runClassifier);
+    attachImageHandlers('detector', runDetector);
+
+    const runBtn = $('[data-run="toxicity"]');
+    const txtInput = $('[data-input="toxicity"]');
+    if (runBtn && txtInput) {
+        runBtn.addEventListener('click', () => runToxicity(txtInput.value));
+        txtInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) runToxicity(txtInput.value);
+        });
+        $$('.text-example').forEach(btn => {
+            btn.addEventListener('click', () => {
+                txtInput.value = btn.dataset.text;
+                runToxicity(btn.dataset.text);
+            });
+        });
+    }
+
+    $('[data-cam="start"]')?.addEventListener('click', startWebcam);
+    $('[data-cam="stop"]')?.addEventListener('click', stopWebcam);
 }
 
 /* ---------- Init all ---------- */
@@ -707,5 +972,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initTimelineProgress();
     initConsoleEgg();
     initKonami();
-    initMLDemo();
+    initMLPlayground();
 });
