@@ -14,14 +14,23 @@
         }
     });
 
+    const setMenuOpen = (open) => {
+        navMenu.classList.toggle('open', open);
+        navToggle.classList.toggle('open', open);
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', String(open));
+    };
+
     navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('open');
+        setMenuOpen(!navMenu.classList.contains('open'));
     });
 
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('open');
-        });
+        link.addEventListener('click', () => setMenuOpen(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setMenuOpen(false);
     });
 
     tabs.forEach(tab => {
