@@ -1,38 +1,56 @@
 :root,
-[data-theme="dark"] {
-    --bg-primary: #0a0e1a;
-    --bg-secondary: #0f1424;
-    --bg-tertiary: #161b2e;
-    --text-primary: #e6edf6;
-    --text-secondary: #8b95b3;
-    --text-muted: #4f5a7a;
-    --accent: #64ffda;
-    --accent-soft: rgba(100, 255, 218, 0.1);
-    --accent-glow: rgba(100, 255, 218, 0.25);
-    --border: rgba(100, 255, 218, 0.15);
-    --shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
-    --shadow-lg: 0 20px 40px -15px rgba(2, 12, 27, 0.9);
-    --navbar-bg: rgba(10, 14, 26, 0.85);
+[data-theme="light"] {
+    --bg-primary: #f7f3e8;          /* warm paper cream */
+    --bg-secondary: #fefbf2;        /* lighter paper sheet */
+    --bg-tertiary: #ede5d0;         /* highlighter cream */
+    --text-primary: #1f2331;        /* ink blue-black */
+    --text-secondary: #545a72;      /* faded ink */
+    --text-muted: #8e94a8;          /* light pencil */
+    --accent: #e8602c;              /* marker orange */
+    --accent-soft: rgba(232, 96, 44, 0.08);
+    --accent-glow: rgba(232, 96, 44, 0.2);
+    --border: rgba(31, 35, 49, 0.12);
+    --grid-line: rgba(31, 35, 49, 0.06);
+    --shadow: 0 10px 30px -15px rgba(31, 35, 49, 0.18);
+    --shadow-lg: 0 20px 40px -15px rgba(31, 35, 49, 0.25);
+    --navbar-bg: rgba(247, 243, 232, 0.88);
+    --marker-yellow: rgba(255, 217, 61, 0.55);
+    --marker-pink: rgba(255, 126, 182, 0.45);
+    --marker-blue: rgba(86, 177, 255, 0.4);
+    --marker-green: rgba(110, 197, 103, 0.45);
+    --sticky-yellow: #fff8c4;
+    --sticky-pink: #ffd6e7;
+    --sticky-blue: #d4e8ff;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Newsreader', Georgia, serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --font-hand: 'Caveat', 'Patrick Hand', cursive;
     --transition: cubic-bezier(0.645, 0.045, 0.355, 1);
     --container-max: 1200px;
 }
 
-[data-theme="light"] {
-    --bg-primary: #fafbff;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #eef1f8;
-    --text-primary: #0f1424;
-    --text-secondary: #4a5470;
-    --text-muted: #95a0bd;
-    --accent: #00a988;
-    --accent-soft: rgba(0, 169, 136, 0.08);
-    --accent-glow: rgba(0, 169, 136, 0.18);
-    --border: rgba(0, 169, 136, 0.18);
-    --shadow: 0 10px 30px -15px rgba(15, 20, 36, 0.18);
-    --shadow-lg: 0 20px 40px -15px rgba(15, 20, 36, 0.22);
-    --navbar-bg: rgba(250, 251, 255, 0.85);
+[data-theme="dark"] {
+    --bg-primary: #1a1d28;          /* chalkboard dark */
+    --bg-secondary: #23273a;        /* slightly lighter board */
+    --bg-tertiary: #2d324a;
+    --text-primary: #e8e6dd;        /* chalk white */
+    --text-secondary: #a0a4b8;      /* faded chalk */
+    --text-muted: #5f6479;          /* dusty chalk */
+    --accent: #ffd93d;              /* yellow chalk */
+    --accent-soft: rgba(255, 217, 61, 0.1);
+    --accent-glow: rgba(255, 217, 61, 0.25);
+    --border: rgba(232, 230, 221, 0.12);
+    --grid-line: rgba(232, 230, 221, 0.05);
+    --shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.9);
+    --navbar-bg: rgba(26, 29, 40, 0.88);
+    --marker-yellow: rgba(255, 217, 61, 0.25);
+    --marker-pink: rgba(255, 126, 182, 0.25);
+    --marker-blue: rgba(86, 177, 255, 0.25);
+    --marker-green: rgba(110, 197, 103, 0.25);
+    --sticky-yellow: #4d4a2a;
+    --sticky-pink: #4d2d3d;
+    --sticky-blue: #2d3d4d;
 }
 
 * {
@@ -65,11 +83,30 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background:
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(100, 255, 218, 0.08), transparent),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(100, 130, 255, 0.05), transparent);
+    background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-position: center top;
     pointer-events: none;
     z-index: -1;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    left: 96px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(232, 96, 44, 0.25);
+    pointer-events: none;
+    z-index: -1;
+    box-shadow: 4px 0 0 rgba(232, 96, 44, 0.15);
+}
+
+@media (max-width: 900px) {
+    body::after { display: none; }
 }
 
 .container {
@@ -2244,3 +2281,829 @@ textarea[data-input="toxicity"]:focus {
     .ml-panel { min-height: 480px; }
     .toast { left: 1rem; right: 1rem; bottom: 1rem; }
 }
+
+/* ============================================
+   LAB NOTEBOOK THEME
+   ============================================ */
+
+/* Headings use serif feel */
+.section-title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* Section title becomes a Jupyter-style code cell header */
+.section-title {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 0.85rem 1.25rem 0.85rem 3rem;
+    position: relative;
+    gap: 0.6rem;
+    box-shadow: 0 1px 0 var(--border);
+    font-size: clamp(1.5rem, 3vw, 1.85rem);
+}
+
+.section-title::before {
+    content: 'In [' counter(sect-counter) ']:';
+    counter-increment: sect-counter;
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0;
+    font-style: normal;
+}
+
+body { counter-reset: sect-counter; }
+
+/* Hide the original "01." numbering since we render "In [n]:" instead */
+.section-title .section-num,
+.contact-pretitle .section-num {
+    display: none;
+}
+
+.section-title::after {
+    display: none;
+}
+
+/* Contact pretitle becomes "In [N]:" style too */
+.contact-pretitle {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-pretitle::before {
+    content: 'In [' counter(sect-counter) ']:';
+    counter-increment: sect-counter;
+    font-family: var(--font-mono);
+    color: var(--accent);
+    margin-right: 0.4rem;
+}
+
+/* Hero name + tagline get serif accent */
+.hero-name {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.hero-tagline .type-target {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--marker-yellow);
+    text-decoration-thickness: 0.4em;
+    text-decoration-skip-ink: none;
+    text-underline-offset: -0.15em;
+}
+
+.hero-greeting {
+    font-family: var(--font-hand);
+    font-weight: 500;
+    color: var(--accent);
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0;
+    transform: rotate(-1deg);
+    display: inline-block;
+}
+
+.hero-greeting::before {
+    content: '//';
+    margin-right: 0.4rem;
+    opacity: 0.5;
+}
+
+/* Working-on widget becomes a hand-drawn sticker */
+.working-on {
+    font-family: var(--font-hand);
+    font-size: 1.05rem;
+    border: 2px dashed var(--accent);
+    background: var(--marker-yellow);
+    border-radius: 12px;
+    color: var(--text-primary);
+    transform: rotate(-1.5deg);
+    box-shadow: 3px 3px 0 rgba(31, 35, 49, 0.1);
+    padding: 0.65rem 1.1rem;
+}
+
+.working-on .working-value {
+    font-family: var(--font-hand);
+    font-weight: 600;
+}
+
+/* Avatar frame more "polaroid" */
+.avatar-frame {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 12px 12px 60px;
+    border: 1px solid var(--border);
+    box-shadow:
+        0 1px 0 rgba(31, 35, 49, 0.04),
+        0 8px 24px -8px rgba(31, 35, 49, 0.2),
+        var(--shadow);
+    transform: rotate(2deg);
+    transition: transform 0.4s var(--transition);
+}
+
+.avatar-frame::before {
+    display: none;
+}
+
+.avatar-frame img {
+    border-radius: 4px;
+    aspect-ratio: 1 / 1;
+}
+
+.avatar-frame:hover {
+    transform: rotate(0deg) translateY(-4px);
+}
+
+.avatar-badge {
+    font-family: var(--font-hand);
+    font-size: 1.05rem;
+    bottom: 18px;
+    transform: translateX(-50%) rotate(-3deg);
+    border: 1px solid var(--border);
+    background: var(--sticky-yellow);
+    color: var(--text-primary);
+}
+
+.avatar-badge a { font-family: var(--font-hand); }
+
+/* Project cards become "experiment result" papers with washi tape */
+.project-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 0 var(--border), 0 8px 18px -10px rgba(31, 35, 49, 0.15);
+    border-radius: 6px;
+    position: relative;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 56px;
+    height: 14px;
+    background: var(--marker-yellow);
+    border: 1px solid rgba(31, 35, 49, 0.06);
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(31, 35, 49, 0.1);
+}
+
+.project-card:nth-child(2)::after { background: var(--marker-pink); transform: translateX(-50%) rotate(2deg); }
+.project-card:nth-child(3)::after { background: var(--marker-blue); transform: translateX(-50%) rotate(-2deg); left: 30%; }
+.project-card:nth-child(4)::after { background: var(--marker-green); transform: translateX(-50%) rotate(1deg); left: 65%; }
+.project-card:nth-child(5)::after { background: var(--marker-yellow); transform: translateX(-50%) rotate(-3deg); }
+.project-card:nth-child(6)::after { background: var(--marker-pink); transform: translateX(-50%) rotate(2deg); left: 40%; }
+
+.project-title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+}
+
+.project-subtitle {
+    font-family: var(--font-hand);
+    font-size: 1rem;
+}
+
+/* Marker highlight utility */
+.highlight {
+    background: linear-gradient(transparent 55%, var(--marker-yellow) 55% 90%, transparent 90%);
+    padding: 0 0.15em;
+    color: var(--text-primary);
+}
+
+.hero-description .highlight:nth-of-type(1) { background: linear-gradient(transparent 55%, var(--marker-yellow) 55% 90%, transparent 90%); }
+.hero-description .highlight:nth-of-type(2) { background: linear-gradient(transparent 55%, var(--marker-pink) 55% 90%, transparent 90%); }
+.hero-description .highlight:nth-of-type(3) { background: linear-gradient(transparent 55%, var(--marker-blue) 55% 90%, transparent 90%); }
+
+/* Stat cards become index cards */
+.stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 0 var(--border), 2px 3px 0 rgba(31, 35, 49, 0.04);
+    border-radius: 4px;
+    transform: rotate(-0.5deg);
+}
+
+.stat-card:nth-child(2) { transform: rotate(0.8deg); }
+.stat-card:nth-child(3) { transform: rotate(-0.8deg); }
+.stat-card:nth-child(4) { transform: rotate(0.5deg); }
+
+.stat-card:hover { transform: rotate(0) translateY(-4px); border-color: var(--accent); }
+
+.stat-num {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.stat-label {
+    font-family: var(--font-hand);
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* Filter pills become marker buttons */
+.filter-pill, .ml-tab, .tab {
+    font-family: var(--font-mono);
+}
+
+.filter-pill.active {
+    background: var(--accent);
+    color: var(--bg-secondary);
+}
+
+/* Skill categories — index cards */
+.skill-category {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 0 var(--border), 3px 4px 0 rgba(31, 35, 49, 0.04);
+}
+
+.skill-category h3 {
+    font-family: var(--font-mono);
+    color: var(--accent);
+}
+
+.skill-category ul li::before {
+    content: '✓';
+    color: var(--accent);
+    font-family: var(--font-mono);
+}
+
+.cert-tag {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    font-family: var(--font-mono);
+}
+
+.cert-tag:nth-child(odd):hover {
+    background: var(--marker-yellow);
+    color: var(--text-primary);
+    border-color: rgba(31, 35, 49, 0.1);
+    transform: rotate(-1deg) translateY(-2px);
+}
+
+.cert-tag:nth-child(even):hover {
+    background: var(--marker-pink);
+    color: var(--text-primary);
+    border-color: rgba(31, 35, 49, 0.1);
+    transform: rotate(1deg) translateY(-2px);
+}
+
+/* Timeline — looser, hand-drawn marker line */
+.timeline::before {
+    background: rgba(232, 96, 44, 0.18);
+    width: 2px;
+}
+
+.timeline-progress {
+    background: var(--accent);
+    width: 2px;
+    box-shadow: 1px 0 0 var(--marker-yellow);
+}
+
+.timeline-marker {
+    background: var(--bg-primary);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px rgba(232, 96, 44, 0.15);
+}
+
+.timeline-date {
+    font-family: var(--font-hand);
+    font-size: 1.05rem;
+    color: var(--accent);
+}
+
+.timeline-content h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+}
+
+.timeline-content .institution {
+    font-family: var(--font-hand);
+    font-size: 1rem;
+    font-style: normal;
+    color: var(--text-secondary);
+}
+
+/* Experience tabs — marker tabs */
+.tabs { border-color: var(--border); }
+.tab.active { background: var(--marker-yellow); color: var(--text-primary); }
+
+.tab-content h3 { font-family: var(--font-serif); font-weight: 600; }
+.tab-content .company { color: var(--accent); font-family: var(--font-mono); font-size: 0.95rem; }
+.tab-content .duration { font-family: var(--font-hand); font-size: 1.05rem; color: var(--text-secondary); }
+
+/* Contact title */
+.contact-title { font-family: var(--font-serif); font-weight: 700; }
+.contact-pretitle { font-family: var(--font-mono); }
+
+/* Buttons */
+.btn {
+    font-family: var(--font-mono);
+    border-radius: 4px;
+}
+
+.btn-primary {
+    box-shadow: 2px 3px 0 rgba(31, 35, 49, 0.15);
+}
+
+.btn-primary:hover {
+    box-shadow: 4px 5px 0 rgba(232, 96, 44, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Sticky notes — placed inline via HTML */
+.sticky-note {
+    display: inline-block;
+    background: var(--sticky-yellow);
+    border: 1px solid rgba(31, 35, 49, 0.1);
+    box-shadow: 2px 3px 0 rgba(31, 35, 49, 0.08);
+    padding: 0.6rem 0.9rem;
+    border-radius: 2px;
+    font-family: var(--font-hand);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    transform: rotate(-2deg);
+    position: relative;
+    line-height: 1.3;
+    margin: 1rem 0;
+}
+
+.sticky-note::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 40px;
+    height: 10px;
+    background: rgba(232, 96, 44, 0.3);
+    border-radius: 1px;
+}
+
+.sticky-note.pink { background: var(--sticky-pink); transform: rotate(1.5deg); }
+.sticky-note.blue { background: var(--sticky-blue); transform: rotate(-1deg); }
+
+.sticky-note .arrow {
+    font-family: var(--font-hand);
+    margin: 0 0.3rem;
+}
+
+/* Hand-drawn arrow utility */
+.arrow-down {
+    display: inline-block;
+    font-family: var(--font-hand);
+    font-size: 2rem;
+    color: var(--accent);
+    transform: rotate(-12deg);
+}
+
+/* Code-cell wrapper around ML panels */
+.ml-panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 0 var(--border), 0 16px 28px -16px rgba(31, 35, 49, 0.15);
+}
+
+.ml-panel-meta h3 {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.ml-panel-meta p {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+}
+
+.ml-tab.active {
+    background: var(--marker-yellow);
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+/* Hero CTA buttons — paper button */
+.btn-secondary {
+    background: var(--bg-secondary);
+    border-color: var(--accent);
+}
+
+/* Nav becomes lighter / more notebook-like */
+.nav-logo {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-style: italic;
+}
+
+.nav-menu a {
+    font-family: var(--font-mono);
+}
+
+.nav-menu a::before {
+    color: var(--accent);
+}
+
+/* Footer */
+.footer-credit {
+    font-family: var(--font-hand);
+    font-size: 1rem;
+}
+
+/* Konami coffee → notebook eraser-pencil */
+.konami-emoji { font-size: 4rem; }
+
+/* Decorative formula in margins (deep, decorative) */
+.margin-formula {
+    position: absolute;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--text-muted);
+    opacity: 0.45;
+    pointer-events: none;
+    font-size: 1rem;
+    user-select: none;
+    z-index: 0;
+}
+
+.margin-formula.top-right {
+    top: 1.5rem;
+    right: 1.5rem;
+    transform: rotate(8deg);
+}
+
+.margin-formula.bottom-left {
+    bottom: 1.5rem;
+    left: 1.5rem;
+    transform: rotate(-6deg);
+}
+
+.section { position: relative; }
+.section > .container { position: relative; z-index: 1; }
+
+/* Hand-drawn doodle borders */
+.doodle-border {
+    border: 2px solid var(--text-primary);
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 var(--accent);
+}
+
+/* Scroll progress — marker stroke */
+.scroll-progress {
+    background: var(--accent);
+    box-shadow: 0 0 0 var(--accent-glow);
+    height: 4px;
+}
+
+/* Avatar bg gradient swap */
+.avatar-frame {
+    background-image: none;
+    background-color: var(--bg-secondary);
+}
+
+/* Light theme polish — paper specific tweaks */
+[data-theme="light"] .ml-tab.active { color: var(--text-primary); }
+[data-theme="light"] .filter-pill.active { color: var(--bg-secondary); }
+[data-theme="light"] .working-on { color: var(--text-primary); }
+[data-theme="light"] .stat-num { color: var(--accent); }
+[data-theme="light"] .navbar { border-bottom: 1px solid var(--border); }
+[data-theme="light"] body { color: var(--text-secondary); }
+[data-theme="light"] .hero-greeting { color: #c84614; }
+
+/* Override cursor spotlight blend */
+[data-theme="light"] .cursor-spotlight {
+    mix-blend-mode: multiply;
+    background: radial-gradient(circle, rgba(232, 96, 44, 0.08) 0%, transparent 60%);
+}
+
+[data-theme="light"] .cursor-dot,
+[data-theme="light"] .cursor-ring { mix-blend-mode: multiply; }
+
+/* Dark theme polish — chalkboard */
+[data-theme="dark"] body::before {
+    background-image:
+        linear-gradient(rgba(232, 230, 221, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 230, 221, 0.05) 1px, transparent 1px);
+}
+
+[data-theme="dark"] body::after {
+    background: rgba(255, 217, 61, 0.3);
+    box-shadow: 4px 0 0 rgba(255, 217, 61, 0.15);
+}
+
+[data-theme="dark"] .working-on,
+[data-theme="dark"] .ml-tab.active,
+[data-theme="dark"] .tab.active {
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .btn-primary {
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    color: var(--accent);
+    background: transparent;
+}
+
+/* ============================================
+   PLAYGROUND PUSH — go more whimsical
+   ============================================ */
+
+/* DROP the code-cell look on section titles, replace with banner + emoji */
+.section-title {
+    background: transparent;
+    border: none;
+    border-left: none;
+    padding: 0;
+    box-shadow: none;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    transform: rotate(-0.5deg);
+}
+
+.section-title::before {
+    content: 'In [' counter(sect-counter) ']:';
+    counter-increment: sect-counter;
+    position: static;
+    transform: none;
+    font-family: var(--font-hand);
+    font-size: 0.55em;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--marker-yellow);
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    transform: rotate(-3deg);
+    display: inline-block;
+}
+
+/* Hand-drawn squiggle underline under section title */
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: -1rem;
+    bottom: -0.35em;
+    height: 12px;
+    display: block !important;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 12' preserveAspectRatio='none'><path d='M0,6 Q20,0 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6' fill='none' stroke='%23e8602c' stroke-width='3' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+    opacity: 0.65;
+    max-width: none;
+    margin: 0;
+}
+
+/* Random emojis at section title start — via data attribute would be ideal but here as decoration */
+#about .section-title::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 12' preserveAspectRatio='none'><path d='M0,6 Q20,0 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6' fill='none' stroke='%23ff7eb6' stroke-width='3' stroke-linecap='round'/></svg>"); }
+#experience .section-title::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 12' preserveAspectRatio='none'><path d='M0,6 Q20,0 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6' fill='none' stroke='%2356b1ff' stroke-width='3' stroke-linecap='round'/></svg>"); }
+#projects .section-title::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 12' preserveAspectRatio='none'><path d='M0,6 Q20,0 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6' fill='none' stroke='%236ec567' stroke-width='3' stroke-linecap='round'/></svg>"); }
+#playground .section-title::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 12' preserveAspectRatio='none'><path d='M0,6 Q20,0 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6' fill='none' stroke='%23e8602c' stroke-width='3' stroke-linecap='round'/></svg>"); }
+#education .section-title::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 12' preserveAspectRatio='none'><path d='M0,6 Q20,0 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6' fill='none' stroke='%23ffd93d' stroke-width='3' stroke-linecap='round'/></svg>"); }
+#skills .section-title::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 12' preserveAspectRatio='none'><path d='M0,6 Q20,0 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6' fill='none' stroke='%23ff7eb6' stroke-width='3' stroke-linecap='round'/></svg>"); }
+
+/* Star burst doodles in section corners */
+.section::before {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8602c' stroke-width='1.5' stroke-linecap='round'><path d='M12 2 L13 9 L20 10 L13 11 L12 18 L11 11 L4 10 L11 9 Z'/></svg>");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 3rem;
+    right: 4rem;
+    opacity: 0.18;
+    pointer-events: none;
+    transform: rotate(15deg);
+    z-index: 0;
+}
+
+.section.about::before { transform: rotate(15deg); top: 4rem; right: 5%; }
+.section.experience::before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2356b1ff' stroke-width='1.5'><path d='M2,12 Q6,4 12,12 T22,12' stroke-linecap='round'/></svg>");
+    top: 3rem; right: 3%; width: 100px; height: 50px;
+    transform: rotate(-10deg); opacity: 0.25;
+}
+.section.projects::before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236ec567' stroke-width='1.5' stroke-linecap='round'><circle cx='12' cy='12' r='3'/><path d='M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12 M4.93 4.93 L7.76 7.76 M16.24 16.24 L19.07 19.07 M4.93 19.07 L7.76 16.24 M16.24 7.76 L19.07 4.93'/></svg>");
+    top: 5rem; right: 4%;
+}
+.section.playground::before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8602c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M4 4 Q12 -2 20 4 Q26 12 20 20 Q12 26 4 20 Q-2 12 4 4 Z'/><circle cx='10' cy='10' r='1'/><circle cx='15' cy='12' r='1'/><circle cx='12' cy='15' r='1'/></svg>");
+    top: 4rem; right: 6%;
+}
+
+/* Sticky note (interactive scattered around) */
+.scattered-note {
+    position: absolute;
+    background: var(--sticky-yellow);
+    border: 1px solid rgba(31, 35, 49, 0.1);
+    box-shadow: 3px 4px 0 rgba(31, 35, 49, 0.08);
+    padding: 0.7rem 1rem;
+    border-radius: 2px;
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    transform: rotate(-3deg);
+    line-height: 1.3;
+    z-index: 2;
+    max-width: 180px;
+}
+
+.scattered-note.pink { background: var(--sticky-pink); transform: rotate(3deg); }
+.scattered-note.blue { background: var(--sticky-blue); transform: rotate(-2deg); }
+
+.scattered-note::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 36px;
+    height: 8px;
+    background: rgba(232, 96, 44, 0.35);
+    border-radius: 1px;
+}
+
+/* Hand-drawn arrow doodle */
+.doodle-arrow {
+    position: absolute;
+    pointer-events: none;
+    color: var(--accent);
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    line-height: 1.2;
+    z-index: 1;
+}
+
+.doodle-arrow svg {
+    width: 60px;
+    height: 50px;
+}
+
+/* Make project cards feel more like polaroid w/ caption strip */
+.project-card {
+    padding-bottom: 2.5rem;
+}
+
+.project-card::before {
+    transform-origin: top left;
+    transform: scaleX(0);
+}
+
+/* Random rotation on project cards (no rotation but slight tilt) */
+.projects-grid > .project-card:nth-child(odd) { transform: rotate(-0.6deg); }
+.projects-grid > .project-card:nth-child(even) { transform: rotate(0.6deg); }
+.projects-grid > .project-card:hover { transform: rotate(0) translateY(-5px); z-index: 5; }
+
+/* Tab content gets handwritten margin notes */
+.tab-content::before {
+    content: '✏️';
+    position: absolute;
+    top: 0;
+    left: -2.5rem;
+    font-size: 1.5rem;
+    opacity: 0.7;
+    transform: rotate(-15deg);
+}
+
+.tab-content { position: relative; }
+
+/* Hero adds floating doodles around avatar */
+.hero-avatar {
+    position: relative;
+}
+
+.hero-avatar::after {
+    content: '✨';
+    position: absolute;
+    font-size: 2rem;
+    top: -10px;
+    right: -10px;
+    z-index: 3;
+    animation: bobble 3s ease-in-out infinite;
+}
+
+@keyframes bobble {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-8px) rotate(15deg); }
+}
+
+/* Hero greeting bigger */
+.hero-greeting {
+    font-size: 2rem;
+}
+
+/* CTA buttons softer */
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    border-radius: 100px;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    border-radius: 100px;
+    border-width: 2px;
+    font-weight: 600;
+}
+
+/* Filter pills + ml tabs rounder, more sticker-like */
+.filter-pill, .ml-tab {
+    border-radius: 100px;
+    border-width: 1.5px;
+}
+
+.filter-pill.active {
+    box-shadow: 2px 3px 0 rgba(31, 35, 49, 0.2);
+    transform: rotate(-1.5deg);
+}
+
+/* Avatar bigger handwriting badge */
+.avatar-badge { font-size: 1.1rem; }
+
+/* Tagline more obvious marker highlight */
+.hero-tagline .type-target {
+    background: var(--marker-yellow);
+    text-decoration: none;
+    padding: 0 0.15em;
+    border-radius: 4px;
+    box-shadow: 2px 3px 0 rgba(31, 35, 49, 0.08);
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+/* Stat numbers bigger, more "score" feel */
+.stat-num { font-size: 2.8rem; }
+
+/* Skill list items playful */
+.skill-category ul li::before { content: '★'; color: var(--marker-yellow); }
+.skill-category:nth-child(1) ul li::before { color: var(--accent); content: '✓'; }
+.skill-category:nth-child(2) ul li::before { color: #56b1ff; content: '◆'; }
+.skill-category:nth-child(3) ul li::before { color: #6ec567; content: '⬡'; }
+.skill-category:nth-child(4) ul li::before { color: #ff7eb6; content: '♥'; }
+
+/* Section title — explicit emoji per section title (added via JS data) */
+.section-title .emoji {
+    font-size: 1.2em;
+    margin-right: 0.2em;
+    display: inline-block;
+    transform: translateY(-0.05em);
+}
+
+/* Avatar wrapper slight tilt */
+.hero-avatar { transform: rotate(-2deg); transition: transform 0.4s ease; }
+.hero-avatar:hover { transform: rotate(0); }
+
+/* Confetti-like background dots (very subtle) */
+.hero {
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 217, 61, 0.15) 0, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(255, 126, 182, 0.2) 0, transparent 3px),
+        radial-gradient(circle at 30% 80%, rgba(86, 177, 255, 0.18) 0, transparent 2px),
+        radial-gradient(circle at 90% 30%, rgba(110, 197, 103, 0.18) 0, transparent 3px),
+        radial-gradient(circle at 50% 50%, rgba(232, 96, 44, 0.1) 0, transparent 2px);
+}
+
+/* Cursor: keep but reduce dot/ring sizing to feel more "pencil" */
+[data-theme="light"] .cursor-dot { background: var(--accent); }
+[data-theme="light"] .cursor-ring { border-color: var(--accent); }
+
