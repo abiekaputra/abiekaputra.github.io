@@ -41,6 +41,9 @@
     box-sizing: border-box;
 }
 
+/* Honor HTML `hidden` attribute even when we override display in component CSS */
+[hidden] { display: none !important; }
+
 html {
     scroll-behavior: smooth;
 }
@@ -2115,4 +2118,129 @@ textarea[data-input="toxicity"]:focus {
         align-items: stretch;
     }
     .text-examples { justify-content: center; }
+}
+
+/* ============================================
+   FIXES: page jump + broken preview state
+   ============================================ */
+
+/* Reserve tagline height so typewriter doesn't shift layout */
+.hero-tagline {
+    min-height: 2.4em;
+}
+
+/* Reserve ML panel height so tab switching doesn't shift Education below */
+.ml-panel {
+    min-height: 540px;
+}
+
+/* Fix stat counter width — digit count varies (0 → 28) */
+.stat-num {
+    display: inline-block;
+    text-align: center;
+    min-width: 3ch;
+}
+
+/* Upload area loading state */
+.upload-area.analyzing {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    cursor: progress;
+    position: relative;
+}
+
+.upload-area.analyzing .upload-title,
+.upload-area.analyzing .upload-hint,
+.upload-area.analyzing svg {
+    opacity: 0.25;
+}
+
+.upload-area.analyzing::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spinSpinner 0.8s linear infinite;
+}
+
+@keyframes spinSpinner {
+    to { transform: rotate(360deg); }
+}
+
+/* Inline analyzing pill (for non-image demos) */
+.analyzing-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.85rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 100px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.analyzing-pill::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--accent);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spinSpinner 0.7s linear infinite;
+}
+
+/* Toast (error messages) */
+.toast {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid #f87171;
+    border-radius: 8px;
+    padding: 0.9rem 1.2rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+    box-shadow: var(--shadow-lg);
+    z-index: 2100;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    max-width: calc(100vw - 3rem);
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast::before {
+    content: '⚠';
+    font-size: 1.1rem;
+}
+
+/* Better preview image background so even loading frame looks clean */
+.result-image {
+    background: var(--bg-tertiary);
+}
+
+.result-image img:not([src]),
+.result-image img[src=""] {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .ml-panel { min-height: 480px; }
+    .toast { left: 1rem; right: 1rem; bottom: 1rem; }
 }
