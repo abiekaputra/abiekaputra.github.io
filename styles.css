@@ -4005,3 +4005,83 @@ body.ml-busy-lock {
     .stat-num { font-size: 1.4rem; }
 }
 
+
+/* ============================================
+   MOBILE AUDIT FIXES (6 issues)
+   ============================================ */
+
+/* 1. Skills 2-column always on mobile (was 1-col causing empty right) */
+@media (max-width: 420px) {
+    .skill-category ul { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 320px) {
+    .skill-category ul { grid-template-columns: 1fr; }
+}
+
+/* 2. Hero CTA buttons — not full-width pill */
+@media (max-width: 700px) {
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.7rem;
+    }
+    .hero-cta .btn {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+        border-radius: 14px;
+        padding: 0.95rem 1.5rem;
+    }
+}
+
+/* 3. Sidebar full coverage (width 100% on mobile) */
+@media (max-width: 700px) {
+    .nav-menu {
+        width: 100%;
+        max-width: none;
+        right: -100%;
+        box-shadow: none;
+    }
+    .nav-menu.open {
+        right: 0;
+    }
+}
+
+/* 4. Section title sticker nowrap + smaller mobile */
+@media (max-width: 700px) {
+    .section-title::before {
+        white-space: nowrap;
+        font-size: 0.38em;
+        padding: 0.2em 0.5em;
+        flex-shrink: 0;
+    }
+    .section-title {
+        gap: 0.5rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* 5. Hide tab pencil emoji on mobile (was off-screen left) */
+@media (max-width: 900px) {
+    .tab-content::before { display: none; }
+}
+
+/* 6. Reduce scattered doodles opacity below 500px */
+@media (max-width: 500px) {
+    .section::before,
+    .section .container::before,
+    .section .container::after {
+        opacity: 0.08 !important;
+    }
+}
+
+/* 7. Bonus: body text micro-tune for tiny viewports */
+@media (max-width: 360px) {
+    .hero-description { font-size: 0.92rem; line-height: 1.5; }
+    .about-text p { font-size: 0.92rem; line-height: 1.5; }
+    .playground-desc { font-size: 0.92rem; }
+    .contact-description { font-size: 0.92rem; }
+}
+
