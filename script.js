@@ -396,6 +396,12 @@ function initCounters() {
         const target = parseFloat(el.dataset.countTo);
         const decimals = parseInt(el.dataset.decimals || '0', 10);
         const suffix = el.dataset.suffix || '';
+        const finalText = target.toFixed(decimals) + suffix;
+        // Reserve final width so width doesn't grow during the count-up
+        el.style.minWidth = `${finalText.length}ch`;
+        // Pre-set placeholder so the layout from initial '0' to first decimal frame
+        // doesn't reflow on mount
+        el.textContent = (0).toFixed(decimals) + suffix;
         const duration = 1400;
         const start = performance.now();
         const startVal = 0;
@@ -405,7 +411,7 @@ function initCounters() {
             const current = startVal + (target - startVal) * eased;
             el.textContent = current.toFixed(decimals) + suffix;
             if (t < 1) requestAnimationFrame(step);
-            else el.textContent = target.toFixed(decimals) + suffix;
+            else el.textContent = finalText;
         };
         requestAnimationFrame(step);
     };
@@ -638,6 +644,26 @@ const mlState = {
 
 const t = (key, fallback) => translations[currentLang]?.[key] || translations.en[key] || fallback || key;
 
+let _toastEl = null;
+let _toastTimer = null;
+function showToast(message) {
+    if (!_toastEl) {
+        _toastEl = document.createElement('div');
+        _toastEl.className = 'toast';
+        document.body.appendChild(_toastEl);
+    }
+    _toastEl.textContent = message;
+    _toastEl.classList.add('show');
+    clearTimeout(_toastTimer);
+    _toastTimer = setTimeout(() => _toastEl.classList.remove('show'), 3500);
+}
+
+const waitForImage = (img) => new Promise((resolve, reject) => {
+    if (img.complete && img.naturalWidth > 0) return resolve();
+    img.onload = () => resolve();
+    img.onerror = () => reject(new Error('Image failed to load'));
+});
+
 function setPanelStatus(panel, mode, key) {
     const s = $(`[data-status="${panel}"]`);
     if (!s) return;
@@ -680,24 +706,23 @@ async function runClassifier(imgEl) {
     const meta = $('[data-meta="classifier"]');
     const preview = $('[data-preview="classifier"]');
     const result = $('[data-result="classifier"]');
+    const upload = $('[data-upload="classifier"]');
 
-    preview.src = imgEl.src;
-    result.hidden = false;
-    meta.textContent = t('ml.predicting', 'Predicting…');
-
+    upload.classList.add('analyzing');
     try {
-        await new Promise(res => {
-            if (imgEl.complete && imgEl.naturalWidth > 0) res();
-            else { imgEl.onload = res; imgEl.onerror = res; }
-        });
+        await waitForImage(imgEl);
+        preview.src = imgEl.src;
         const t0 = performance.now();
         const preds = await mlState.mobilenet.classify(imgEl, 5);
         const ms = Math.round(performance.now() - t0);
         renderBars(list, preds.map(p => ({ name: p.className.split(',')[0], value: p.probability })));
         meta.textContent = `MobileNet v2 · ${ms} ms · ${t('ml.on_device', 'on-device')}`;
+        result.hidden = false;
     } catch (err) {
         console.error(err);
-        meta.textContent = t('ml.error', 'Error during prediction');
+        showToast(t('ml.error', 'Error during prediction'));
+    } finally {
+        upload.classList.remove('analyzing');
     }
 }
 
@@ -715,15 +740,11 @@ async function runDetector(imgEl) {
     const list = $('[data-list="detector"]');
     const meta = $('[data-meta="detector"]');
     const result = $('[data-result="detector"]');
+    const upload = $('[data-upload="detector"]');
 
-    result.hidden = false;
-    meta.textContent = t('ml.predicting', 'Predicting…');
-
+    upload.classList.add('analyzing');
     try {
-        await new Promise(res => {
-            if (imgEl.complete && imgEl.naturalWidth > 0) res();
-            else { imgEl.onload = res; imgEl.onerror = res; }
-        });
+        await waitForImage(imgEl);
 
         const maxDim = 640;
         const scale = Math.min(maxDim / imgEl.naturalWidth, maxDim / imgEl.naturalHeight, 1);
@@ -754,9 +775,12 @@ async function runDetector(imgEl) {
 
         renderBars(list, predictions.slice(0, 8).map(p => ({ name: p.class, value: p.score })));
         meta.textContent = `COCO-SSD · ${ms} ms · ${predictions.length} ${t('ml.objects_count', 'objects detected')}`;
+        result.hidden = false;
     } catch (err) {
         console.error(err);
-        meta.textContent = t('ml.error', 'Error during prediction');
+        showToast(t('ml.error', 'Error during prediction'));
+    } finally {
+        upload.classList.remove('analyzing');
     }
 }
 
@@ -773,10 +797,12 @@ async function runToxicity(text) {
     const list = $('[data-list="toxicity"]');
     const meta = $('[data-meta="toxicity"]');
     const result = $('[data-result="toxicity"]');
+    const runBtn = $('[data-run="toxicity"]');
     if (!text.trim()) return;
 
-    result.hidden = false;
-    meta.textContent = t('ml.analyzing', 'Analyzing…');
+    runBtn.disabled = true;
+    const originalLabel = runBtn.querySelector('span')?.textContent || runBtn.textContent;
+    runBtn.innerHTML = `<span>${t('ml.analyzing', 'Analyzing…')}</span>`;
     try {
         const t0 = performance.now();
         const preds = await mlState.toxicity.classify([text]);
@@ -797,9 +823,13 @@ async function runToxicity(text) {
         }).sort((a, b) => b.value - a.value);
         renderBars(list, items);
         meta.textContent = `Toxicity BERT · ${ms} ms · ${t('ml.on_device', 'on-device')}`;
+        result.hidden = false;
     } catch (err) {
         console.error(err);
-        meta.textContent = t('ml.error', 'Error during prediction');
+        showToast(t('ml.error', 'Error during prediction'));
+    } finally {
+        runBtn.disabled = false;
+        runBtn.innerHTML = `<span data-i18n="ml.analyze">${originalLabel}</span>`;
     }
 }
 
@@ -887,7 +917,7 @@ function attachImageHandlers(panel, runner) {
         btn.addEventListener('click', () => {
             const img = new Image();
             img.src = btn.dataset.exampleSrc;
-            img.onload = () => runner(img);
+            runner(img);
         });
     });
 }
