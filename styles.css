@@ -4085,3 +4085,65 @@ body.ml-busy-lock {
     .contact-description { font-size: 0.92rem; }
 }
 
+
+/* ============================================
+   HORIZONTAL OVERFLOW FIX (causes phone auto-zoom-out)
+   ============================================ */
+
+/* Defensive: clip horizontal overflow on root + body + every section */
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
+}
+
+/* Sections clip their decorative pseudo-elements that extend past edges */
+.section {
+    overflow: hidden;
+}
+
+/* On mobile, kill all decorative doodles that use negative offsets — they
+   were the source of horizontal overflow. */
+@media (max-width: 700px) {
+    .section::before,
+    .section .container::before,
+    .section .container::after {
+        display: none !important;
+    }
+
+    /* Hero confetti dots — keep but lighter */
+    .hero {
+        background-image: none;
+    }
+
+    /* Pull avatar polaroid frame inside viewport (transform/rotate creates overflow) */
+    .avatar-frame {
+        transform: rotate(0deg);
+    }
+
+    /* Disable card tilts on mobile (rotation = horizontal expansion) */
+    .stat-card,
+    .stat-card:nth-child(2),
+    .stat-card:nth-child(3),
+    .stat-card:nth-child(4),
+    .projects-grid > .project-card:nth-child(odd),
+    .projects-grid > .project-card:nth-child(even) {
+        transform: none !important;
+    }
+
+    /* Section title sticker rotate kills overflow */
+    .section-title::before {
+        transform: none !important;
+    }
+
+    /* Hero avatar rotate too */
+    .hero-avatar {
+        transform: none !important;
+    }
+}
+
