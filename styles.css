@@ -21,10 +21,10 @@
     --sticky-yellow: #fff8c4;
     --sticky-pink: #ffd6e7;
     --sticky-blue: #d4e8ff;
-    --font-sans: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-serif: 'Fraunces', Georgia, serif;
-    --font-mono: 'Geist Mono', 'SF Mono', monospace;
+    --font-sans: 'Spectral', Georgia, serif;
+    --font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
+    --font-serif: 'Bricolage Grotesque', 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
     --font-hand: 'Patrick Hand', cursive;
     --font-marker: 'Patrick Hand', cursive;
     --transition: cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -3551,4 +3551,204 @@ body::before {
 
 /* Skill list symbols — keep playful but smaller */
 .skill-category ul li::before { font-size: 0.85em; }
+
+
+/* ============================================
+   COMBO A: Instrument Serif tweaks
+   (Instrument Serif only has 400 weight)
+   ============================================ */
+
+.hero-name {
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(3.5rem, 9.5vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+    font-weight: 400;
+    font-size: clamp(2rem, 5.5vw, 3.5rem);
+    line-height: 1.1;
+}
+
+.section-title {
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(2.1rem, 4.5vw, 3rem);
+    letter-spacing: -0.02em;
+}
+
+.project-title, .timeline-content h3, .tab-content h3 {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.4rem;
+}
+
+.contact-title {
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+}
+
+.stat-num {
+    font-weight: 400;
+    font-style: italic;
+}
+
+.nav-logo {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.7rem;
+}
+
+/* ============================================
+   FINAL: Spectral body + Bricolage display
+   Remove italic from titles, keep readable
+   ============================================ */
+
+/* Titles use Bricolage Grotesque BOLD (no italic) */
+.hero-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-style: normal;
+    font-size: clamp(2.75rem, 7.5vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+}
+
+.hero-tagline {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-style: normal;
+    font-size: clamp(1.75rem, 5vw, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+}
+
+.hero-tagline .type-target {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: normal;
+    background: var(--marker-yellow);
+    color: var(--text-primary);
+    padding: 0 0.2em;
+    border-radius: 4px;
+    box-shadow: 2px 3px 0 rgba(31, 35, 49, 0.06);
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: normal;
+    font-size: clamp(1.85rem, 4vw, 2.6rem);
+    letter-spacing: -0.025em;
+}
+
+.section-title::before {
+    font-family: var(--font-mono);
+    font-size: 0.4em;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.project-title, .timeline-content h3, .tab-content h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.3rem;
+    letter-spacing: -0.015em;
+}
+
+.contact-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-style: normal;
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+    letter-spacing: -0.035em;
+}
+
+.stat-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-style: normal;
+}
+
+.nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-style: normal;
+    font-size: 1.4rem;
+    letter-spacing: -0.04em;
+}
+
+.nav-logo:hover { color: var(--accent); transform: none; }
+
+/* Spectral body - serif body is distinctive */
+body, .hero-description, .about-text p, .tab-content ul li,
+.playground-desc, .ml-panel-meta p,
+.contact-description, .timeline-content p:not(.institution),
+.about-list li {
+    font-family: var(--font-sans);
+    font-weight: 400;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.65;
+}
+
+.about-text p { font-size: 1.05rem; line-height: 1.65; }
+
+.tab-content ul li { font-size: 0.98rem; line-height: 1.6; }
+
+/* Skill category headers — mono with character */
+.skill-category h3 {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+/* ML panel header — mono */
+.ml-panel-meta h3 {
+    font-family: var(--font-mono);
+    font-weight: 600;
+}
+
+/* Reduce italic uses elsewhere */
+.contact-pretitle { font-style: normal; }
+
+/* Hero greeting subtle handwriting */
+.hero-greeting {
+    font-family: var(--font-hand);
+    font-size: 1.35rem;
+    font-style: normal;
+    color: var(--accent);
+}
+
+/* Avatar polaroid badge */
+.avatar-badge, .avatar-badge a {
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    font-style: normal;
+}
+
+.working-on, .working-on .working-value {
+    font-family: var(--font-hand);
+    font-size: 1.15rem;
+    font-style: normal;
+    letter-spacing: 0.2px;
+}
+
+.footer-credit { font-family: var(--font-hand); font-size: 1.1rem; font-style: normal; }
+
+.timeline-date, .project-subtitle,
+.stat-label, .institution,
+.tab-content .duration {
+    font-family: var(--font-hand);
+    font-size: 1.05rem;
+    font-style: normal;
+}
 
