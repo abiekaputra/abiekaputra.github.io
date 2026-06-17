@@ -3831,3 +3831,177 @@ body.ml-busy-lock {
     touch-action: none;
 }
 
+
+/* ============================================
+   MOBILE NAV REWORK + OVERFLOW FIXES
+   ============================================ */
+
+/* Desktop: hide SVG icons, keep numbered "1." prefix */
+.nav-icon {
+    display: none;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.nav-footer { display: none; }
+
+/* Working-on widget — prevent overflow on mobile */
+.working-on {
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+/* ===== MOBILE (<= 700px) ===== */
+@media (max-width: 700px) {
+    /* Sidebar restructure: top-aligned with icons + bottom socials */
+    .nav-menu {
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 5rem 1.5rem 2rem;
+        gap: 0.4rem;
+        list-style: none;
+    }
+
+    .nav-menu li {
+        list-style: none;
+    }
+
+    .nav-menu a {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        padding: 0.85rem 1rem;
+        border-radius: 10px;
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--text-primary);
+        transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus,
+    .nav-menu a.active {
+        background: var(--accent-soft);
+        color: var(--accent);
+    }
+
+    /* Hide the "1." "2." counter prefix on mobile */
+    .nav-menu a::before {
+        display: none;
+    }
+
+    /* Show SVG icons on mobile */
+    .nav-icon {
+        display: block;
+        color: var(--accent);
+        opacity: 0.85;
+    }
+
+    /* Nav footer with socials pushed to bottom */
+    .nav-footer {
+        display: flex !important;
+        margin-top: auto;
+        justify-content: center;
+        gap: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .nav-footer a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        background: transparent;
+        color: var(--text-secondary);
+        border-radius: 50%;
+        transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-footer a:hover { color: var(--accent); background: var(--accent-soft); }
+    .nav-footer a svg { width: 22px; height: 22px; }
+    .nav-footer a::before { display: none !important; }
+
+    /* === Working-on widget overflow fix === */
+    .working-on {
+        flex-direction: column;
+        gap: 0.3rem;
+        font-size: 0.95rem;
+        padding: 0.55rem 0.9rem;
+        max-width: 100%;
+        line-height: 1.3;
+    }
+    .working-on .working-sep { display: none; }
+    .working-on .working-value {
+        font-size: 0.85rem;
+    }
+
+    /* === Hero tightening === */
+    .hero { padding: 4.5rem 0 2.5rem; }
+    .hero-name {
+        font-size: clamp(2.1rem, 9vw, 3rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+    }
+    .hero-tagline {
+        font-size: clamp(1.5rem, 6.5vw, 2.3rem);
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+    }
+    .hero-greeting {
+        font-size: 1.15rem;
+    }
+    .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.55;
+        margin-bottom: 2rem;
+    }
+    .hero-avatar { transform: rotate(0.5deg); }
+    .avatar-frame {
+        width: 180px;
+        height: 180px;
+        padding: 10px 10px 50px;
+    }
+
+    /* === Tighter section padding === */
+    .section { padding: 2.75rem 0; }
+    .section-title {
+        margin-bottom: 1.75rem;
+        font-size: clamp(1.6rem, 6vw, 2rem);
+    }
+
+    /* === Tighter body text === */
+    .about-text p { font-size: 0.95rem; line-height: 1.55; }
+    .about-list li { font-size: 0.92rem; }
+    .timeline-content p:not(.institution) { font-size: 0.92rem; line-height: 1.55; }
+    .tab-content ul li { font-size: 0.9rem; line-height: 1.5; }
+    .playground-desc { font-size: 0.95rem; line-height: 1.55; }
+    .contact-description { font-size: 0.95rem; line-height: 1.55; }
+    .ml-panel-meta p { font-size: 0.88rem; }
+
+    /* === Stat cards tighter === */
+    .about-stats { gap: 0.55rem; }
+    .stat-card { padding: 1.15rem 0.6rem; }
+    .stat-num { font-size: 1.55rem; }
+    .stat-label { font-size: 0.9rem; }
+}
+
+/* ===== SMALL PHONES (<= 420px) ===== */
+@media (max-width: 420px) {
+    .hero-name { font-size: clamp(1.85rem, 9vw, 2.5rem); }
+    .hero-tagline { font-size: clamp(1.35rem, 6.5vw, 2rem); }
+    .avatar-frame { width: 160px; height: 160px; padding: 8px 8px 44px; }
+    .working-on { font-size: 0.88rem; }
+    .working-on .working-value { font-size: 0.78rem; }
+    .skill-category ul { grid-template-columns: 1fr; }
+    .stat-card { padding: 1rem 0.5rem; }
+    .stat-num { font-size: 1.4rem; }
+}
+
