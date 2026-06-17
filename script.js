@@ -88,6 +88,7 @@ const translations = {
         'ml.cam.stop': 'Stop Camera',
         'ml.cam.permission': 'Browser will ask for camera permission. Nothing leaves your device.',
         'ml.cam.denied': 'Camera access denied or unavailable',
+        'ml.busy_hint': 'Please wait — model is running on your device.',
         'edu.uni.desc': 'Focused on machine learning, software engineering, and full-stack development. Active in student organizations and community service initiatives.',
         'edu.kkn.inst': 'Thematic Community Service Program',
         'edu.kkn.desc': 'Managed communication and PR for the program, created publication materials, and built strong relationships with residents and local stakeholders.',
@@ -193,6 +194,7 @@ const translations = {
         'ml.cam.stop': 'Hentikan Kamera',
         'ml.cam.permission': 'Browser akan minta izin akses kamera. Tidak ada data yang keluar dari device.',
         'ml.cam.denied': 'Akses kamera ditolak atau tidak tersedia',
+        'ml.busy_hint': 'Mohon tunggu — model sedang berjalan di device kamu.',
         'edu.uni.desc': 'Fokus pada machine learning, software engineering, dan full-stack development. Aktif di organisasi mahasiswa dan kegiatan pengabdian masyarakat.',
         'edu.kkn.inst': 'Program Kuliah Kerja Nyata Tematik',
         'edu.kkn.desc': 'Mengelola komunikasi dan hubungan masyarakat untuk program, membuat materi publikasi, dan membangun hubungan dengan warga serta stakeholder lokal.',
@@ -669,7 +671,40 @@ function setPanelStatus(panel, mode, key) {
     if (!s) return;
     s.classList.remove('loading', 'ready', 'error');
     if (mode) s.classList.add(mode);
-    s.querySelector('.status-text').textContent = t(key, key);
+    const txtEl = s.querySelector('.status-text');
+    txtEl.dataset.i18n = key;
+    txtEl.textContent = t(key, key);
+}
+
+let _busyCount = 0;
+let _busyEl = null;
+function setBusy(on, labelKey) {
+    if (!_busyEl) {
+        _busyEl = document.createElement('div');
+        _busyEl.className = 'ml-busy-overlay';
+        _busyEl.innerHTML = `
+            <div class="ml-busy-card">
+                <div class="ml-busy-spinner"></div>
+                <div class="ml-busy-label"></div>
+                <div class="ml-busy-hint"></div>
+            </div>
+        `;
+        document.body.appendChild(_busyEl);
+    }
+    if (on) {
+        _busyCount++;
+        const label = t(labelKey || 'ml.analyzing', 'Analyzing…');
+        _busyEl.querySelector('.ml-busy-label').textContent = label;
+        _busyEl.querySelector('.ml-busy-hint').textContent = t('ml.busy_hint', 'Please wait — model is running on your device.');
+        _busyEl.classList.add('show');
+        document.body.classList.add('ml-busy-lock');
+    } else {
+        _busyCount = Math.max(0, _busyCount - 1);
+        if (_busyCount === 0) {
+            _busyEl.classList.remove('show');
+            document.body.classList.remove('ml-busy-lock');
+        }
+    }
 }
 
 function renderBars(listEl, items, options = {}) {
@@ -709,6 +744,7 @@ async function runClassifier(imgEl) {
     const upload = $('[data-upload="classifier"]');
 
     upload.classList.add('analyzing');
+    setBusy(true, 'ml.predicting');
     try {
         await waitForImage(imgEl);
         preview.src = imgEl.src;
@@ -723,6 +759,7 @@ async function runClassifier(imgEl) {
         showToast(t('ml.error', 'Error during prediction'));
     } finally {
         upload.classList.remove('analyzing');
+        setBusy(false);
     }
 }
 
@@ -743,6 +780,7 @@ async function runDetector(imgEl) {
     const upload = $('[data-upload="detector"]');
 
     upload.classList.add('analyzing');
+    setBusy(true, 'ml.predicting');
     try {
         await waitForImage(imgEl);
 
@@ -781,6 +819,7 @@ async function runDetector(imgEl) {
         showToast(t('ml.error', 'Error during prediction'));
     } finally {
         upload.classList.remove('analyzing');
+        setBusy(false);
     }
 }
 
@@ -803,6 +842,7 @@ async function runToxicity(text) {
     runBtn.disabled = true;
     const originalLabel = runBtn.querySelector('span')?.textContent || runBtn.textContent;
     runBtn.innerHTML = `<span>${t('ml.analyzing', 'Analyzing…')}</span>`;
+    setBusy(true, 'ml.analyzing');
     try {
         const t0 = performance.now();
         const preds = await mlState.toxicity.classify([text]);
@@ -830,6 +870,7 @@ async function runToxicity(text) {
     } finally {
         runBtn.disabled = false;
         runBtn.innerHTML = `<span data-i18n="ml.analyze">${originalLabel}</span>`;
+        setBusy(false);
     }
 }
 
@@ -890,7 +931,9 @@ function stopWebcam() {
 function attachImageHandlers(panel, runner) {
     const upload = $(`[data-upload="${panel}"]`);
     const input = upload.querySelector('input[type="file"]');
-    upload.addEventListener('click', () => input.click());
+    upload.addEventListener('click', (e) => {
+        if (e.target !== input) input.click();
+    });
 
     const handleFile = (file) => {
         if (!file || !file.type.startsWith('image/')) return;
@@ -945,6 +988,7 @@ function initMLPlayground() {
         btn.addEventListener('click', async () => {
             btn.disabled = true;
             setPanelStatus(panel, 'loading', 'ml.loading');
+            setBusy(true, 'ml.loading');
             try {
                 await loader();
                 setPanelStatus(panel, 'ready', key);
@@ -954,6 +998,8 @@ function initMLPlayground() {
                 console.error(err);
                 setPanelStatus(panel, 'error', 'ml.error');
                 btn.disabled = false;
+            } finally {
+                setBusy(false);
             }
         });
     };
