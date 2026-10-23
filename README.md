@@ -74,8 +74,7 @@ Then visit <http://localhost:8000>. No build step required.
 ├── index.html                  # Single-page document
 ├── styles.css                  # All styles (theme variables, layouts, animations)
 ├── script.js                   # All behavior (i18n, ML demos, animations)
-├── assets/examples/            # Sample images for the ML playground
-└── Abi-Eka-Putra-Wulyono-resume.pdf
+└── assets/examples/            # Sample images for the ML playground
 ```
 
 ## 📫 Contact
