@@ -86,10 +86,10 @@
 }
 
 .photo-wrap img {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   filter: saturate(0.88);
 }
 

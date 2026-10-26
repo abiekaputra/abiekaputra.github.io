@@ -26,6 +26,8 @@ fragments of his journey, and a handful of direct paths into GitHub.
 - Hover adds delight, while touch users retain all essential information.
 - Motion respects `prefers-reduced-motion`.
 - Desktop, tablet, and phone layouts are designed independently.
+- The portrait uses the public GitHub avatar endpoint at a square 1:1 ratio, so
+  future GitHub profile-photo changes appear without being cropped.
 
 ## Selected rabbit holes
 
@@ -65,6 +67,6 @@ Open <http://127.0.0.1:4173>.
 
 ## License
 
-Source code is available under the [MIT License](LICENSE). The profile photo and
+Source code is available under the [MIT License](LICENSE). The GitHub avatar and
 personal career narrative remain identity content and are not granted for reuse
 as another person's portfolio.
