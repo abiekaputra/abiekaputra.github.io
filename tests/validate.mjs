@@ -43,7 +43,9 @@ for (const link of requiredPublicLinks) {
 }
 
 assert(readFileSync(join(root, "CNAME"), "utf8").trim() === "abiekaputra.is-a.dev", "Unexpected CNAME");
-assert((combinedHtml.match(/class="project(?: |")/g) ?? []).length === 6, "Expected six selected projects");
+assert((combinedHtml.match(/class="project-link(?: |")/g) ?? []).length === 6, "Expected six selected projects");
+assert((combinedHtml.match(/<img(?:\s|>)/g) ?? []).length === 1, "Only the personal portrait should appear on the website");
+assert(!combinedHtml.includes("project-media"), "Project screenshots must not appear on the personal website");
 
 console.log(`Validated ${allFiles.length} files, ${htmlFiles.length} HTML modules, and six selected projects.`);
 

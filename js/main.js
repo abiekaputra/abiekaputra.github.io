@@ -2,7 +2,7 @@ const body = document.body;
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-toggle]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
-const themeButton = document.querySelector("[data-theme-toggle]");
+const cursorOrb = document.querySelector(".cursor-orb");
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 );
@@ -30,51 +30,32 @@ function setMenu(open) {
 }
 
 function initNavigation() {
-  menuButton.addEventListener("click", () => {
-    setMenu(menuButton.getAttribute("aria-expanded") !== "true");
-  });
-
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setMenu(false));
-  });
-
+  menuButton.addEventListener("click", () =>
+    setMenu(menuButton.getAttribute("aria-expanded") !== "true"),
+  );
+  mobileMenu
+    .querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", () => setMenu(false)));
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setMenu(false);
   });
 
   const sections = [...document.querySelectorAll("main section[id]")];
   const links = [...document.querySelectorAll('.desktop-nav a[href^="#"]')];
-  const setActiveLink = () => {
-    header.classList.toggle("is-scrolled", window.scrollY > 24);
+  const updateNavigation = () => {
+    header.classList.toggle("is-scrolled", window.scrollY > 35);
     const current = sections.findLast(
       (section) => section.offsetTop <= window.scrollY + 220,
     );
-    links.forEach((link) => {
+    links.forEach((link) =>
       link.classList.toggle(
         "is-active",
-        current && link.hash === `#${current.id}`,
-      );
-    });
+        Boolean(current && link.hash === `#${current.id}`),
+      ),
+    );
   };
-
-  window.addEventListener("scroll", setActiveLink, { passive: true });
-  setActiveLink();
-}
-
-function initTheme() {
-  const savedTheme = localStorage.getItem("portfolio-theme");
-  const systemLight = window.matchMedia(
-    "(prefers-color-scheme: light)",
-  ).matches;
-  document.documentElement.dataset.theme =
-    savedTheme || (systemLight ? "light" : "dark");
-
-  themeButton.addEventListener("click", () => {
-    const next =
-      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem("portfolio-theme", next);
-  });
+  window.addEventListener("scroll", updateNavigation, { passive: true });
+  updateNavigation();
 }
 
 function initReveal() {
@@ -92,40 +73,78 @@ function initReveal() {
         observer.unobserve(entry.target);
       });
     },
-    { rootMargin: "0px 0px -8%", threshold: 0.08 },
+    { rootMargin: "0px 0px -7%", threshold: 0.07 },
   );
   items.forEach((item) => observer.observe(item));
 }
 
-function initDialogs() {
-  document.querySelectorAll("[data-dialog]").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      document.getElementById(trigger.dataset.dialog)?.showModal();
-    });
+function initProjectColors() {
+  const root = document.documentElement;
+  document.querySelectorAll("[data-accent]").forEach((project) => {
+    const applyColor = () =>
+      root.style.setProperty("--live-accent", project.dataset.accent);
+    project.addEventListener("pointerenter", applyColor);
+    project.addEventListener("focus", applyColor);
   });
+}
 
-  document.querySelectorAll(".case-dialog").forEach((dialog) => {
-    dialog
-      .querySelector("[data-dialog-close]")
-      .addEventListener("click", () => dialog.close());
-    dialog.addEventListener("click", (event) => {
-      const bounds = dialog.getBoundingClientRect();
-      const outside =
-        event.clientX < bounds.left ||
-        event.clientX > bounds.right ||
-        event.clientY < bounds.top ||
-        event.clientY > bounds.bottom;
-      if (outside) dialog.close();
-    });
+function initCursor() {
+  if (
+    prefersReducedMotion.matches ||
+    !window.matchMedia("(pointer: fine)").matches
+  )
+    return;
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      body.classList.add("has-pointer");
+      cursorOrb.style.left = `${event.clientX}px`;
+      cursorOrb.style.top = `${event.clientY}px`;
+    },
+    { passive: true },
+  );
+  document.querySelectorAll("a, button").forEach((item) => {
+    item.addEventListener("pointerenter", () =>
+      cursorOrb.classList.add("is-hovering"),
+    );
+    item.addEventListener("pointerleave", () =>
+      cursorOrb.classList.remove("is-hovering"),
+    );
+  });
+}
+
+function initEmailCopy() {
+  const button = document.querySelector("[data-copy-email]");
+  button.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText("abiekapw@gmail.com");
+      button.textContent = "copied — now say hi";
+    } catch {
+      button.textContent = "abiekapw@gmail.com";
+    }
+  });
+}
+
+function initSecret() {
+  const toast = document.querySelector("[data-secret-toast]");
+  let typed = "";
+  document.addEventListener("keydown", (event) => {
+    if (event.key.length !== 1) return;
+    typed = `${typed}${event.key.toLowerCase()}`.slice(-4);
+    if (typed !== "lazy") return;
+    toast.classList.add("is-visible");
+    window.setTimeout(() => toast.classList.remove("is-visible"), 3600);
   });
 }
 
 async function initPortfolio() {
   await loadPartials();
   initNavigation();
-  initTheme();
   initReveal();
-  initDialogs();
+  initProjectColors();
+  initCursor();
+  initEmailCopy();
+  initSecret();
 }
 
 initPortfolio();
