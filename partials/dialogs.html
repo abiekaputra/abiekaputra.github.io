@@ -1,0 +1,165 @@
+<dialog class="case-dialog" id="nilik-dialog">
+  <button data-dialog-close aria-label="Close details">×</button>
+  <p class="eyebrow">Nilik / Engineering notes</p>
+  <h2>Evidence before automation theatre.</h2>
+  <dl>
+    <div>
+      <dt>Decision</dt>
+      <dd>
+        Keep the human as final reviewer while exposing recommendation, heatmap,
+        regions, and calibration boundary.
+      </dd>
+    </div>
+    <div>
+      <dt>Validation</dt>
+      <dd>
+        API, UI, deterministic synthetic samples, error paths, and CI are tested
+        as one local flow.
+      </dd>
+    </div>
+    <div>
+      <dt>Limit</dt>
+      <dd>
+        Synthetic surfaces demonstrate the workflow; they do not claim factory
+        accuracy or production readiness.
+      </dd>
+    </div>
+  </dl>
+</dialog>
+<dialog class="case-dialog" id="zapx-dialog">
+  <button data-dialog-close aria-label="Close details">×</button>
+  <p class="eyebrow">ZapX / Engineering notes</p>
+  <h2>Durable state before fast delivery.</h2>
+  <dl>
+    <div>
+      <dt>Decision</dt>
+      <dd>
+        PostgreSQL remains authoritative; Redis coordinates execution without
+        replacing business state.
+      </dd>
+    </div>
+    <div>
+      <dt>Validation</dt>
+      <dd>
+        The browser journey reaches delivered email in Mailpit, signed webhooks,
+        failure, retry, and recovery states.
+      </dd>
+    </div>
+    <div>
+      <dt>Limit</dt>
+      <dd>
+        The release is local and uses synthetic delivery targets; no public
+        provider or production SLA is claimed.
+      </dd>
+    </div>
+  </dl>
+</dialog>
+<dialog class="case-dialog" id="tapak-dialog">
+  <button data-dialog-close aria-label="Close details">×</button>
+  <p class="eyebrow">Tapak / Engineering notes</p>
+  <h2>Offline does not mean untraceable.</h2>
+  <dl>
+    <div>
+      <dt>Decision</dt>
+      <dd>
+        Every mobile event keeps its original idempotency identity and replays
+        in order after reconnection.
+      </dd>
+    </div>
+    <div>
+      <dt>Validation</dt>
+      <dd>
+        Operator and courier flows cover creation, QR scan, location evidence,
+        offline queue, delivery, and history.
+      </dd>
+    </div>
+    <div>
+      <dt>Limit</dt>
+      <dd>No carrier integration or legal identity verification is claimed.</dd>
+    </div>
+  </dl>
+</dialog>
+<dialog class="case-dialog" id="satset-dialog">
+  <button data-dialog-close aria-label="Close details">×</button>
+  <p class="eyebrow">Satset / Engineering notes</p>
+  <h2>Abstention is a product feature.</h2>
+  <dl>
+    <div>
+      <dt>Decision</dt>
+      <dd>
+        Use deterministic BM25 retrieval and evidence extraction so ranking and
+        citations remain inspectable.
+      </dd>
+    </div>
+    <div>
+      <dt>Validation</dt>
+      <dd>
+        A quality lab measures recall, ranking, citation coverage, and latency
+        against known-answer cases.
+      </dd>
+    </div>
+    <div>
+      <dt>Limit</dt>
+      <dd>
+        It does not fabricate an answer when the curated local source set lacks
+        evidence.
+      </dd>
+    </div>
+  </dl>
+</dialog>
+<dialog class="case-dialog" id="simonika-dialog">
+  <button data-dialog-close aria-label="Close details">×</button>
+  <p class="eyebrow">SIMONIKA / Engineering notes</p>
+  <h2>A rebuild with the sensitive parts removed.</h2>
+  <dl>
+    <div>
+      <dt>Decision</dt>
+      <dd>
+        Move business transactions into focused services and protect operations
+        with validation, authorization, and audit history.
+      </dd>
+    </div>
+    <div>
+      <dt>Validation</dt>
+      <dd>
+        Feature tests follow inventory metadata through project, owner,
+        timeline, dashboard, detail, and safe CSV export.
+      </dd>
+    </div>
+    <div>
+      <dt>Limit</dt>
+      <dd>
+        The public edition is an independent sanitized rebuild, not a copy of
+        the government environment.
+      </dd>
+    </div>
+  </dl>
+</dialog>
+<dialog class="case-dialog" id="awair-dialog">
+  <button data-dialog-close aria-label="Close details">×</button>
+  <p class="eyebrow">AWAIR / Engineering notes</p>
+  <h2>The model is one part of the product.</h2>
+  <dl>
+    <div>
+      <dt>Decision</dt>
+      <dd>
+        Connect a reproducible pipeline and versioned artifact to an API,
+        durable history, and offline-aware mobile interface.
+      </dd>
+    </div>
+    <div>
+      <dt>Validation</dt>
+      <dd>
+        Chronological evaluation, explicit baselines, automated tests,
+        readiness, metrics, and mobile flow checks.
+      </dd>
+    </div>
+    <div>
+      <dt>Limit</dt>
+      <dd>
+        Synthetic data makes the release reproducible; results are not official
+        health or regulatory advice.
+      </dd>
+    </div>
+  </dl>
+</dialog>

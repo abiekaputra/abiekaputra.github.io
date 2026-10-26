@@ -1,88 +1,88 @@
 # abiekaputra.is-a.dev
 
-> Personal portfolio of **Abi Eka Putra Wulyono** — Fresh Graduate Software Engineer focused on machine learning, data science, and full-stack web development. Based in East Java, Indonesia.
+The personal engineering portfolio of **Abi Eka Putra Wulyono**, a Software
+Engineer working across backend systems, operational automation, full-stack
+products, and applied machine learning.
 
-**🌐 Live**: <https://abiekaputra.is-a.dev>
+**Live website:** <https://abiekaputra.is-a.dev>
 
----
+![Portfolio overview](assets/images/og-image.jpg)
 
-## ✨ Highlights
+## Portfolio direction
 
-- **4 live in-browser ML demos** — image classification, object detection, text toxicity, real-time webcam classification. All models run on-device via TensorFlow.js, zero backend.
-- **Hand-crafted notebook aesthetic** — paper grid, marker highlights, polaroid avatar, sticky notes. Designed to feel less like a template, more like a working notebook.
-- **Bilingual (EN / ID)** — full UI toggle with 80+ translation keys.
-- **Dark / light theme** — paper notebook ↔ chalkboard variants.
-- **Zero framework** — pure HTML, CSS, and vanilla JavaScript. No React, no build step, no bundler.
-- **Mobile-first responsive** — verified across 320 / 360 / 375 / 412 / 768 / 1280 px viewports.
+This site is an engineering dossier rather than a repository catalogue. It
+selects six projects and explains the question behind each build, the technical
+decision that shaped it, how it was validated, and the limitation that remains.
 
-## 🧪 ML Playground
+The public narrative follows three rules:
 
-Each model lazy-loads from CDN only when the user activates its tab — keeping the initial page fast.
+- connect technology to an operational or user outcome;
+- separate team experience from independent portfolio rebuilds; and
+- state local-only releases, synthetic data, and other boundaries explicitly.
 
-| Demo | Model | Library |
-|---|---|---|
-| Image Classifier | MobileNet v2 | `@tensorflow-models/mobilenet@2.1.1` |
-| Object Detection | COCO-SSD | `@tensorflow-models/coco-ssd@2.2.2` |
-| Text Toxicity | BERT-based toxicity | `@tensorflow-models/toxicity@1.2.2` |
-| Live Webcam | MobileNet v2 + getUserMedia | shared MobileNet instance |
+## Selected work
 
-A modal busy overlay locks scroll during inference so the user's input doesn't stutter while TF.js works on the main thread.
+| Product                                             | Engineering focus                    | Core stack                              |
+| --------------------------------------------------- | ------------------------------------ | --------------------------------------- |
+| [Nilik](https://github.com/abiekaputra/nilik)       | Traceable visual anomaly review      | Python, FastAPI, React, OpenCV          |
+| [ZapX](https://github.com/abiekaputra/zapx)         | Durable notification operations      | NestJS, PostgreSQL, Redis, React        |
+| [Tapak](https://github.com/abiekaputra/tapak)       | Offline parcel event capture         | Expo, Fastify, SQLite, SSE              |
+| [Satset](https://github.com/abiekaputra/satset)     | Evidence-backed local retrieval      | TypeScript, BM25, React, Playwright     |
+| [SIMONIKA](https://github.com/abiekaputra/simonika) | Sanitized operational system rebuild | Laravel, Blade, SQL, PHPUnit            |
+| [AWAIR](https://github.com/abiekaputra/awair)       | End-to-end ML mobile product         | scikit-learn, FastAPI, Expo, Prometheus |
 
-## 🛠 Stack
+## Design and implementation
 
-| Layer | Choice |
-|---|---|
-| Markup | Vanilla HTML5 |
-| Styles | Vanilla CSS (custom properties, container queries, ~4,000 lines) |
-| Behavior | Vanilla JavaScript (modular IIFE pattern, ~900 lines) |
-| Display font | [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) |
-| Body font | [Spectral](https://fonts.google.com/specimen/Spectral) (humanist serif) |
-| Mono font | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) |
-| Handwritten accents | [Patrick Hand](https://fonts.google.com/specimen/Patrick+Hand) |
-| ML runtime | [TensorFlow.js 4.22](https://www.tensorflow.org/js) |
-| Host | GitHub Pages |
-| Domain | [is-a.dev](https://www.is-a.dev/) (free dev community domain) |
+- Semantic, accessible HTML with skip navigation and native dialogs.
+- Modular CSS with every production file kept under the project line limit.
+- Small vanilla JavaScript layer for navigation, theme, reveal states, and case
+  study dialogs.
+- Responsive layouts for desktop, tablet, and phone-sized viewports.
+- Light and dark themes with persisted user preference.
+- Reduced-motion support and keyboard-operable interactions.
+- Local, optimized project evidence instead of runtime GitHub image requests.
+- Structured Person metadata and social-sharing metadata.
 
-## 🎯 Interactive features
+No framework, build step, analytics script, tracking pixel, or contact-form
+backend is required.
 
-- Typewriter tagline that cycles through "ML models / data pipelines / experiences"
-- 3D tilt on project cards + avatar (`mousemove` → CSS transforms)
-- Magnetic buttons that lean toward the cursor
-- Scroll progress bar + cursor spotlight with mix-blend-mode
-- Stat counters animate from 0 → target on viewport enter
-- Project filter pills (All / Machine Learning / Web Dev / Design)
-- Timeline draws itself in as you scroll past Education
-- Konami code easter egg (↑↑↓↓←→←→BA) — confetti + a hidden message
-- Console message for devs who pop open DevTools
-
-All animations respect `prefers-reduced-motion`. Custom cursor and tilt effects auto-disable on touch devices.
-
-## 🚀 Running locally
+## Run locally
 
 ```bash
-git clone https://github.com/abiekaputra/abiekaputra.github.io.git
-cd abiekaputra.github.io
-python3 -m http.server 8000
+python3 -m http.server 4173
 ```
 
-Then visit <http://localhost:8000>. No build step required.
+Open <http://127.0.0.1:4173>.
 
-## 📂 Project structure
+## Project structure
 
-```
+```text
 .
-├── index.html                  # Single-page document
-├── styles.css                  # All styles (theme variables, layouts, animations)
-├── script.js                   # All behavior (i18n, ML demos, animations)
-└── assets/examples/            # Sample images for the ML playground
+├── assets/
+│   ├── favicon.svg
+│   └── images/
+├── css/
+│   ├── base.css
+│   ├── components.css
+│   ├── narrative.css
+│   ├── responsive.css
+│   ├── sections.css
+│   └── tokens.css
+├── js/
+│   └── main.js
+├── CNAME
+└── index.html
 ```
 
-## 📫 Contact
+## Contact
 
-- **Email**: abiekapw@gmail.com
-- **LinkedIn**: [abiekaputrawulyono](https://linkedin.com/in/abiekaputrawulyono)
-- **GitHub**: [@abiekaputra](https://github.com/abiekaputra)
+- Email: [abiekapw@gmail.com](mailto:abiekapw@gmail.com)
+- LinkedIn: [abiekaputrawulyono](https://www.linkedin.com/in/abiekaputrawulyono)
+- GitHub: [@abiekaputra](https://github.com/abiekaputra)
+- Instagram: [@beka.ptr](https://www.instagram.com/beka.ptr)
 
-## 📜 License
+## License
 
-Code in this repo is released under the MIT License. Feel free to learn from it, fork it, remix it — just please don't copy it 1:1 as your own portfolio. Build your own story.
+The source code is available under the [MIT License](LICENSE). Personal
+photographs, career evidence, and project screenshots remain portfolio content
+and are not granted for reuse as another person's identity or work history.
